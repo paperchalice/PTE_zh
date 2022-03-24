@@ -1,0 +1,638 @@
+% !TeX encoding = UTF-8
+% !TeX spellcheck = zh-cmn-Hans-CN
+% !TeX program = xelatex
+% !TeX root = ../main.tex
+
+\documentclass[main.tex]{subfiles}
+
+\begin{document}
+\appendix
+\chapter{测度论的细节内容}
+正文中出现但未证明的与测度论相关的结果会在本附录中给出证明。
+\section{卡拉泰奥多里延拓定理} \label{sec:a.1}
+给定空间\(\Omega, \mathcal{F}, \mu\)，若\(N \in \mathcal{F}\)并有\(\mu(N) = 0\)，则称\(N\)为\term{\(\mu\)零测（度）集}，若\(\mu\)在上下文中可以确定，则有时会省略\(\mu\)。本节的主要任务是证明以下内容：
+\begin{theorem} \label{thm:a.1.1}
+	令\(\mathcal{S}\)为半代数，并令\(\mu\)为\(\mathcal{S}\)上的函数且有\(\mu(\emptyset) = 0\)。如果
+	\begin{enumerate*}
+		\item \label{thm:a.1.1.1} 将限个互不相交的\(S_i \in \mathcal{S}\)取并得到\(S \in \mathcal{S}\)，那么就有\(\mu(S) = \sum_{i}\mu(S_i)\)
+		\item \label{thm:a.1.1.2} 如果\(S_i, S \in \mathcal{S}\)符合\(S = +_{i \geq 1}S_i\)，那么\(\mu(S) \leq \sum_{i}\mu(S_i)\)
+	\end{enumerate*}。
+	那么存在唯一的延拓\(\bar{\mu}\)，使得\(\bar{\mu}\)是由\(\mathcal{S}\)生成的代数\(\bar{\mathcal{S}}\)上的测度。如果延拓是\(\sigma\)-有限的，
+	那么存在唯一的延拓\(\nu\)，使得\(\nu\)是\(\sigma(\mathcal{S})\)上的测度。
+\end{theorem}
+\begin{proof}
+	\lemref{lem:1.1.7}说明了\(\bar{\mathcal{S}}\)是由\(\mathcal{S}\)中的元素的不交并构成的集族。
+	接下来在\(\bar{\mathcal{S}}\)上定义\(\bar{\mu}\)。
+	若\(A = +_i S_i\)，定义\(\bar{\mu}(A) = \sum_i\mu(S_i)\)。
+	为了验证\(\bar{\mu}\)是良定义的，我们假定\(A = +_jT_j\)，注意到\(S_i = +_j(S_i \cap T_j)\)以及\(T_j = +_i(S_i\cap T_j)\)故\ref{thm:a.1.1.1}蕴含
+	\[\sum_i \mu(S_i) = \sum_{i,j}\mu(S_i\cap T_j) = \sum_j \mu(T_j)\]
+
+	在\secref{sec:1.1}中我们证明了：
+	\begin{lemma} \label{a.1.2}
+		假定仅\ref{thm:a.1.1.1}成立。
+		\begin{enumerate} [label=(\alph*)]
+			\item 若\(A, B_i \in \bar{\mathcal{S}}\)且\(A = +_{i=1}^n B_i\)，那么\(\bar{\mu}(A) = \sum_i\bar{\mu}(B_i)\)。
+			\item 若\(A, B_i \in \bar{\mathcal{S}}\)且\(A \subseteq \bigcup_{i=1}^n B_i\)，那么\(\bar{\mu}(A) \leq \sum_i\bar{\mu}(B_i)\)。
+		\end{enumerate}
+	\end{lemma}
+	接下来，我们要将加性延拓到可数不交并\(A = +_{i\geq 1}B_i \in \bar{\mathcal{S}}, B_i \in \bar{\mathcal{S}}\)上。
+	我们观察到对每个\(B_i = +_j S_{i,j}\)都有性质\(S_{i,j} \in \mathcal{S}\)且\(\sum_{i\geq 1}\bar{\mu}(B_i) = \sum_{i\geq 1,j}\mu(S_{i,j})\)，因此我们可以用\(S_{i,j}\)来替换式子中\(B_i\)的角色，故我们可以不失一般性地认为\(B_i \in \mathcal{S}\)。
+	现在\(A \in \bar{\mathcal{S}}\)蕴含\(+_jT_j\)（一个有限不交并）且\(T_j = +_{i\geq 1} T_j\cap B_i\)，故\ref{thm:a.1.1.2}蕴含
+	\[\mu(T_j) \leq \sum_{i \geq 1}\mu(T_j \cap B_i)\]
+	对指标\(j\)求和并注意到对于非负数可按任意次序求和，我们有
+	\[\bar{\mu}(A) = \sum_j\mu(T_j) \leq \sum_{i\geq 1}\sum_j \mu(T_j\cap B_i) = \sum_{i \geq 1}(B_i)\]
+	上面的不等式只是\ref{thm:a.1.1.1}中的一半。为了证明另一半，只需要令\(A_n = B_1+\cdots+B_n\)，并令\(C_n = A\cap A_n^c\)，其中\(C_n \in \bar{\mathcal{S}}\)，由于\(\bar{\mathcal{S}}\)是一个集域，故有限加性蕴含了
+	\[\bar{\mu}(A) = \bar{\mu}(B_1) + \cdots +\bar{\mu}(B_n) + \bar{\mu}(C_n) \geq \bar{\mu}(B_1) + \cdots + \bar{\mu}(B_n)\]
+	然后令\(n \rightarrow +\infty\)，我们就有\(\bar{\mu}(A) \geq \sum_{i\geq 1}\bar{\mu}(B_i)\)。
+	结合二者，我们就完成了对\ref{thm:a.1.1.1}的验证。
+
+	在定义好集域\(\bar{\mathcal{S}}\)上的测度后，我们将借助下面的定理完成证明：
+	\begin{theorem}[\term{卡拉泰奥多里延拓定理}（Carath\'{e}odory's Extension Theorem）]\label{thm:a.1.3}
+		令\(\mu\)为集域\(\mathcal{A}\)上的\(\sigma\)有限测度。在则\(\mu\)在\(\sigma(\mathcal{A})\)上的延拓存在且唯一， 其中\(\sigma(\mathcal{A})\)表示包含\(\mathcal{A}\)的最小\(\sigma\)域。
+	\end{theorem}
+	\textbf{唯一性：}在处理存在性这个硬骨头之前，我们先来处理唯一性这个软柿子。证明唯一性的关键是\term{丁金\(\pi\)-\(\lambda\)定理}（Dynkin's  \(\pi\)-\(\lambda\) theorem），本书中的很多地方都要用到这个定理。
+	和往常一样，我们需要一些定义来阐述我们的结果。
+	称\(\mathcal{P}\)是一个\term{\(\lambda\)系}（\(\lambda\)-system），如果它的元素在交下封闭，即若\(A,B \in \mathcal{P}\)则\(A\cap P \in \mathcal{P}\)。例如，一族矩形\(\intoc{a_1, b_1}\times\cdots\times\intoc{a_d, b_d}\)是一个\(\lambda\)系。
+	称\(\mathcal{L}\)是一个\term{\(\pi\)系}（\(\pi\)-system）如果它满足：\begin{enumerate}
+		\item \(\Omega \in \mathcal{L}\)。
+		\item 若\(A, B \in \mathcal{L}\)且\(A \subseteq B\)，则\(B-A \in \mathbb{L}\)。
+		\item 若\(A_n \in \mathcal{L}\)且\(A_n \uparrow A\)，则\(A \in \mathcal{A}\)。
+	\end{enumerate}
+	读者很快就会知道，证明延拓唯一性需要下面的定理。
+
+	\begin{theorem}[\term{\(\pi\)-\(\lambda\)定理（\(\pi\)-\(\lambda\) theorem）}]\label{thm:a.1.4}
+		若\(\mathcal{P}\)是一个\(\pi\)系，\(\mathcal{L}\)是一个包含\(\mathcal{P}\)的\(\lambda\)系，则\(\sigma(\mathcal{P}) \subseteq \mathcal{L}\)。
+	\end{theorem}
+	\begin{proof}
+		我们将逐步证明：
+		\begin{enumerate}[label=(\alph*)]
+			\item\label{proof:a.1.4.a} 若\(\ell(\mathcal{P})\)为包含\(\mathcal{P}\)的最小\(\lambda\)系，则\(\ell(\mathcal{P})\)是一个\(\sigma\)域。
+
+			注意到由于\(\sigma(\mathcal{P})\)是一个最小的\(\sigma\)域且\(\ell(\mathcal{P})\)是包含了\(\mathcal{P}\)的最小\(\pi\)系，那么我们就有
+			\[\sigma(\mathcal{P}) \subseteq \ell(\mathcal{P}) \subseteq \mathcal{L}\]
+			故而从\ref{proof:a.1.4.a}中我们可以得到我们需要的结果。
+
+			为了证明\ref{proof:a.1.4.a}，我们需要知道如果一个\(\pi\)系在交下是封闭的，那么它就是一个\(\sigma\)域。
+			由于
+			\[\begin{split}
+				&A\in \mathcal{L}\Rightarrow A^c = \Omega-A \in \mathcal{L}\\
+				&A\cup B = (A^c\cap B^c)^c\\
+				&\text{若}n\rightarrow +\infty \text{则}\bigcup_{i=1}^n A_i \uparrow \bigcup_{i=1}^{+\infty} A_i
+			\end{split}\]
+			至此，我们就可以说明
+			\item\label{proof:a.1.4.b} \(\ell(\mathcal{P})\)在交下封闭。
+			为了证明\ref{proof:a.1.4.b}，我们需要令\(\mathcal{G}_A = \{B: A\cap B \in \ell(\mathcal{P})\}\)并证明
+			\item\label{proof:a.1.4.c} 若\(A \in \ell(\mathcal{P})\)则\(mathcal{G}_A\)是一个\(\lambda\)系。
+			为了验证这个说法，我们注意到：\begin{enumerate}
+				\item 由于有\(A \in \ell(\mathcal{P})\)，我们有\(\Omega \in \mathcal{G}_A\)。
+				\item 若\(B,C \in \mathbb{G}_A\)且\(B \supseteq C\)，则\(A\cap(B-C) = (A\cap B) - (A\cap C) \in \ell(\mathcal{P})\)。这是因为\(A\cap B, A\cap C \in \ell(\mathcal{P})\)且\(\ell(\mathcal{P})\)是一个\(\lambda\)系。
+				\item 若\(B_n \in \mathcal{G}_A\)且\(B_n \uparrow B\)，则\(A\cap B_n \uparrow A\cap B \in \ell(\mathcal{P})\)。这是因为\(A\cap B_n \in \ell(\mathcal{P})\)且\(\ell(\mathcal{P})\)是一个\(\lambda\)系。
+			\end{enumerate}
+			为了从\ref{proof:a.1.4.c}得到\ref{proof:a.1.4.b}，我们知道由于\(\mathcal{P}\)是一个\(\pi\)系，那么\\*
+			如果\(A\in \mathcal{P}\)则有\(\mathcal{G}_A \supseteq \mathcal{P}\)故而\ref{proof:a.1.4.c}蕴含了\(\mathcal{G}_A \supseteq \ell(\mathcal{P})\)。\\*
+			换句话说，如果\(A\in \mathcal{P}\)且\(B\in\ell(\mathcal{P})\)，则有\(A\cap B \in \ell(\mathcal{P})\)。
+			将上一个断言中的\(A,B\)对调，我们会得到：若\(A\in \ell(\mathcal{P})\)且\(B\in \mathcal{P}\)，则\(A \cap B \in \ell(\mathcal{P})\)但是这句话却蕴含\\*
+			如果\(A\in \ell(\mathcal{P})\)则有\(\mathcal{G}_A \supseteq \mathcal{P}\)故而\ref{proof:a.1.4.c}蕴含了\(\mathcal{G}_A \supseteq \ell(\mathcal{P})\)。\\*
+			该结论说明了若\(A,B\in\ell(\mathcal{P})\)，则\(A\cap B \in \ell(\mathcal{P})\)从而我们完成了对\ref{proof:a.1.4.b}的证明。
+		\end{enumerate}
+		进而我们完成了对整个定理的证明。
+	\end{proof}
+	为了证明\thmref{thm:a.1.3}中的延拓是唯一的，我们将要说明：
+	\begin{theorem} \label{thm:a.1.5}
+		令\(\mathcal{P}\)为一个\(\pi\)系。若测度\(\nu_1\)和\(\nu_2\)（分别定义在\(\sigma\)域\(\mathcal{F}_1\)和\(\mathcal{F}_2\)上）在\(\mathcal{P}\)上具有相同值且存在序列\(A_n \in \mathcal{P}\)使得\(A_n \uparrow \Omega\)且\(\nu_i(A_n)<+\infty\)，则\(\nu_1\)和\(\nu_2\)在\(\sigma(\mathcal{P})\)上具有相同的值。
+	\end{theorem}
+	\begin{proof}
+		令\(A \in \mathcal{P}\)使得\(\nu_1(A) = \nu_2(A) < +\infty\)。并令
+		\[\mathcal{L} = \{B \in \sigma(\mathcal{P}):\nu_1(A\cap B) = \nu_2(A\cap B)\}\]
+		我们现在会说明\(\mathcal{L}\)是一个\(\lambda\)系。由于\(A\in \mathcal{P}, \nu_1(A) = \nu_2(A)\)以及\(\Omega \in \mathcal{L}\)。若\(B,C \in \mathcal{L}\)并有\(C \subseteq B\)，那么我们有
+		\[\begin{split}
+			&\nu_1(A\cap(B-C)) = \nu_1(A\cap B) - \nu_1(A\cap C)\\
+			=&\nu_2(A\cap B) - \nu_2(A\cap C)=\nu_2(A\cap(B-C))
+		\end{split}\]
+		这里我们需要使用条件\(\nu_i(A) < +\infty\)来使减法有意义。最后，如果\(B_n \in \mathcal{L}\)且\(B_n \uparrow B\)那么根据\thmref{thm:1.1.1}的\ref{prop:measure:below_continuity}就有
+		\[\nu_1(A\cap B) = \lim\limits_{n\rightarrow+\infty}\nu_1(A\cap B_n)=\lim\limits_{n\rightarrow+\infty}\nu_2(A\cap B_n)=\nu_2(A\cap B_n)\]
+		由于我们假定\(\mathcal{P}\)在交下封闭，故而根据\hyperref[thm:a.1.4]{\(\pi\)-\(\lambda\)定理}我们有\(\mathcal{L}\supseteq\sigma(\mathcal{P})\)，亦即，若\(A \in \mathcal{P}\)，其中\(\nu_1(A)=\nu_2(A)<+\infty\)，且\(B\in\sigma(\mathcal{P})\)，则有\(\nu_1(A\cap B) = \nu_2(A\cap B)\)。
+		令\(A_n \in \mathcal{P}\)使得\(A_n\uparrow\Omega, \nu_1(A_n) = \nu_2(A_n)<+\infty\)并结合上一个结论以及\thmref{thm:1.1.1}的\ref{prop:measure:below_continuity}我们就得到了想要的结论。
+	\end{proof}
+	\begin{exercise}
+		\item 举出两个定义在\(\mathcal{F} =2^{\{1,2,3,4\}} \)上的不同的概率测度\(\mu\neq\nu\)，但是它们却在集族\(\mathcal{C}\)上有相同的值，其中\(\sigma(\mathcal{C}) = \mathcal{F}\)即包含\(\mathcal{C}\)的最小\(\sigma\)域是\(\mathcal{F}\)。
+	\end{exercise}
+
+	\textbf{存在性：}下一步我们就要证明一个定义在集域\(\mathcal{A}\)上的测度（不必是\(\sigma\)有限的）在由\(\mathcal{A}\)生成的\(\sigma\)域上存在延拓。
+	对于\(E\subseteq \Omega\)，令\(\mu^*(E)=\inf\sum_i\mu(A_i)\)，这里的\(\inf\)是指对所有满足条件\(E\subseteq \bigcup_i A_i\)的集列取下界。
+	我们的直觉告诉我们，如果测度\(\nu\)在\(\mathcal{A}\)上与测度\(\mu\)的值相等，那么根据\thmref{thm:1.1.1}的\ref{thm:1.1.1.2}就会有
+	\[\nu(E) \leq \nu(\bigcup_{i} A_i) \leq \sum_i \nu(A_i) = \sum_i \mu(A_i)\]
+	因此\(\mu^*(E)\)是\(E\)所具有的测度的上界。同样地，我们的直觉也会告诉我们对于可测集来说，这个界还应该是紧的。用正式的话来说就是当
+	\begin{equation}
+		\label{eq:a.1.1}
+		\forall F \subseteq \Omega, \mu^*(F) = \mu^*(F\cap E) + \mu^*(F\cap E^c)
+	\end{equation}
+	时，则称\(E\)是\term{可测的}，
+	这个定义看上去可能不是那么符合直觉，但是之后的证明会告诉我们，这个定义是相当成功的。
+
+	这个定义的直接结论就是\(\mu^*\)必须具有下列性质：
+	\begin{enumerate}
+		\item\label{prop:a.1.monotonicity} \textbf{单调性：} 若\(E\subseteq F\)，则\(\mu^*(E) \leq \mu^*(F)\)。
+		\item\label{prop:a.1.subadditivity} \textbf{次可加性：}若\(F \subseteq \bigcup_{i}F_i\)，\(\bigcup_{i}F_i\)表示可数次并，则\(\mu^*(F)\leq \sum_i\mu^*(F_i)\)。
+	\end{enumerate}
+	任何定义域为集族的映射\(\mu^*\)如果满足\(\mu^*(\emptyset) = 0\)且符合\ref{prop:a.1.monotonicity}、\ref{prop:a.1.subadditivity}这两条性质的话，我们就称这个映射为\term{外测度}（outer measure）。
+	在\ref{prop:a.1.subadditivity}中令\(F_1 = F\cap E, F_2=F\cap E^c, F_i = \emptyset, i\geq 3\)，我们就得知如果要证明一个映射是外测度，只需要证明
+	\begin{equation}
+		\label{eq:a.1.2}
+		\mu^*(F) \geq \mu^*(F\cap E) + \mu^*(F\cap E^c)
+	\end{equation}
+	我们从说明这个新定义可以取代旧定义开始。
+	\begin{lemma} \label{lem:a.1.6}
+		若\(A \in \mathcal{A}\)则\(\mu^*(A) = \mu(A)\)且\(A\)可测。
+	\end{lemma}
+	\begin{proof}
+		\thmref{thm:1.1.1}的\ref{thm:1.1.1.2}蕴含 若\(A \subseteq \bigcup_i A_i\)，则有
+		\[\mu(A) \leq \sum_i \mu(A_i)\]
+		故\(\mu(A) \leq \mu^*(A)\)。
+		当然，我们还可以直接令\(A_1 = A\)并令其他\(A_i = \emptyset\)，故我们还有\(\mu^*(A)\leq \mu(A)\)。
+
+		为了证明任意\(A\in\mathcal{A}\)都是可测的。观察到\eqref{eq:a.1.2}在\(\mu^*(F) = +\infty\)时恒成立。故可不失一般性地认为\(\mu^*(F) < +\infty\)。为了证明当\(A = E\)时\eqref{a.1.2}成立，我们观察到若\(\mu^*(F) < +\infty\)则对每一个\(\epsilon>0\)，存在一个序列\(B_i \in \mathcal{A}\)使得\(\bigcup_i B_i \supseteq F\)有
+		\[\sum_i \mu(B_i) \leq \mu^*(F)+\epsilon\]
+		由于\(\mu\)在\(\mathcal{A}\)上具有加性，且在\(\mathcal{A}\)上\(\mu = \mu^*\)，那么我们就有
+		\[\mu(B_i) = \mu^*(B_i\cap A)+\mu^*(B_i\cap A^c)\]
+		对指标\(i\)求和并利用\(\mu^*\)的\hyperref[prop:a.1.subadditivity]{次可加性}，我们便得到
+		\[\mu^*(F)+\epsilon\geq\sum_i \mu^*(B_i\cap A)+\sum_i \mu^*(B_i\cap A^c)\geq\mu^*(F\cap A)+\mu^*(F\cap A^c)\]
+		由\(\epsilon\)的任意性，我们便得到了待证明的结论。
+	\end{proof}
+	\begin{lemma} \label{lem:a.1.7}
+		可测集族\(\mathcal{A}^*\)是\(\sigma\)域，且\(\mu^*\)在\(\mathcal{A}^*\)上的限制是一个测度。
+	\end{lemma}
+	\begin{remark}
+		该结论对任意外测度均成立。
+	\end{remark}
+	\begin{proof}
+		\begin{enumerate}[label=(\alph*)]
+			\item[] 从可测的定义中我们可以直接得到：
+			\item\label{proof:a.1.7.a} 若\(E\)可测，则\(E^c\)亦可测。
+
+			故我们的第一个步骤就是证明：
+			\item\label{proof:a.1.7.b} 若\(E_1\)、\(E_2\)可测，则\(E_1\cup E_2\)和\(E_1\cap E_2\)亦可测。
+			\begin{proof}[\ref{proof:a.1.7.b}的证明]
+				为了证明第一个结论，令\(G \subseteq \Omega\)，根据\hyperref[prop:a.1.subadditivity]{次可加性}以及\(E_2\)可测（也可在\eqref{eq:a.1.1}中令\(F = G\cap E_1^c\)，并利用\(E_1\)的可测性）我们就有
+				\[\begin{split}
+					&\mu^*(G\cap(E_1\cup E_2))+\mu^*(G\cap(E_1^c\cap E_2^c))\\
+					\leq&\mu^*(G\cap E_1)+\mu^*(G\cap E_1^c\cap E_2) + \mu^*(G\cap E_1^c\cap E_2^c)\\
+					=& \mu^*(G\cap E_1)+\mu^*(G\cap E_1^c) = \mu^*(G)
+				\end{split}\]
+				至于\(E_1\cap E_2\)的可测性，只需知道\(E_1\cap E_2 = (E_1^c\cup E_2^c)^c\)并用\ref{proof:a.1.7.a}即可。
+			\end{proof}
+			\item \label{proof:a.1.7.c} 令\(G\subseteq \Omega\)并令\(E_1, \dots, E_n\)为一列互不相交的可测集，则有
+			\begin{proof}[\ref{proof:a.1.7.c}的证明] 令\(F_m = \bigcup_{i\leq m}E_i\)。由于\(E_n\)可测\(F_n \supseteq E_n\)且\(F_{n-1}\cap E_n = \emptyset\)故有
+				\[\begin{split}
+					\mu^*(G\cap F_n)&=\mu^*(G\cap F_n\cap E_n) + \mu^*(G\cap F_n\cap E_n^c)\\
+					&= \mu^*(G\cap E_n)+\mu^*(G\cap F_{n-1})
+				\end{split}\]
+				再使用归纳法就得到了待证明的结果。
+			\end{proof}
+			\item \label{proof:a.1.7.d} 若集列中的集合\(E_i\)均可测，则它们的并\(E = \bigcup_{i=1}^{+\infty} E_i\)可测
+			\begin{proof}[\ref{proof:a.1.7.d}的证明]
+				定义\(E^\prime_i = E_i\cap\del{\bigcap_{j<i}E_j^c}\)。\ref{proof:a.1.7.a}和\ref{proof:a.1.7.b}说明了\(E^\prime_i\)是可测的，故而我们可以不失一般性地认为\(E_i\)之间两两不交。
+				令\(F_n = \bigcup_{i=1}^n E_i\)，从\ref{proof:a.1.7.b}得知\(F_n\)可测，借助\hyperref[prop:a.1.monotonicity]{单调性}以及\ref{proof:a.1.7.c}有
+				\[\begin{split}
+					\mu^*(G) &= \mu^*(G\cap F_n)+\mu^*(G\cap F_n^c) \geq \mu^*(G\cap F_n) + \mu^*(G\cap E^c)\\
+					&= \sum_{i=1}^n \mu^*(G\cap E_i) + \mu^*(G\cap E^c)
+				\end{split}\]
+				取极限\(n\rightarrow+\infty\)并利用\hyperref[prop:a.1.subadditivity]{次可加性}就会得到
+				\[\mu^*(G) \geq \sum_{i=1}^{+\infty} \mu^*(G\cap E_i) + \mu^*(G\cap E^c) \geq \mu^*(G\cap E) + \mu^*(G\cap E^c)\]
+				而这条式子就是\eqref{eq:a.1.2}。
+			\end{proof}
+			接下来就到了证明\lemref{lem:a.1.7}最后一步，证明
+			\item \label{proof:a.1.7.e} 若\(E = \bigcup_{i}E_i\)，其中\(E_1, E_2,
+			\dots\)互不相交且可测，则有
+			\[\mu^*(E) = \sum_{i=1}^{+\infty}\mu^*(E_i)\]
+			\begin{proof}[\ref{proof:a.1.7.e}的证明]
+				令\(F_n = \bigcup_{i=1}^n E_i\)。由\hyperref[prop:a.1.monotonicity]{单调性}以及\ref{proof:a.1.7.c}有
+				\[\mu^*(E) \geq \mu^*(F_n) = \sum_{i=1}^{n} \mu^*(E_i)\]
+				取极限\(n\rightarrow+\infty\)并利用\hyperref[prop:a.1.subadditivity]{次可加性}就得到了相应结论。
+			\end{proof}
+		\end{enumerate}
+	\end{proof}
+\end{proof}
+
+\section{什么样的集合是可测的？} \label{sec:a.2}
+在\hyperref[sec:a.1]{上节}\thmref{thm:a.1.3}的证明中将测度延拓到了\(A^*\supseteq\sigma(A)\)上。
+我们的下个目标是说明这两个\(\sigma\)域之间的关系。用\(\mathcal{A}_\delta\)表示来自\(\mathcal{A}\)中可数个元素的并构成的集族，并用\(\mathcal{A}_{\delta\sigma}\)表示来自\(\mathcal{A}_\delta\)中可数个元素的交构成的集族。
+我们的第一步是说明每个可测集几乎就是\(\mathcal{A}_{\delta\sigma}\)中的元素。
+
+定义对称差\(A\triangle B = (A-B)\cup (B-A)\)。
+
+\begin{lemma} \label{lem:a.2.1}
+	令\(E\)为任意\(\mu^*(E) < +\infty\)的集合。
+	\begin{enumerate}
+		\item\label{lem:a.2.1.1} \(\forall \epsilon>0 \exists A \in \mathcal{A}_\delta\ (A \supseteq E \wedge \mu^*(A) \leq \mu^*(E)+\epsilon)\)。
+		\item\label{lem:a.2.1.2} \(\forall \epsilon > 0 \exists B \in \mathcal{A} \ \mu(B\triangle E) \leq 2\epsilon\)。
+		\item\label{lem:a.2.1.3} \(\exists C \in \mathcal{A}_{\delta\sigma}\ (C\supseteq E \wedge \mu^*(C) = \mu^*(E))\)。
+	\end{enumerate}
+\end{lemma}
+\begin{proof}
+	由定义可知存在集列\(A_i\)使得\(A = \bigcup_{i} A_i \supseteq E\)且\(\sum_i \mu(A_i) \leq \mu^*(E) + \epsilon\)。而根据\(\mu^*\)的定义还有\(\mu^*(A) \leq \sum_i \mu(A_i)\)，故\ref{lem:a.2.1.1}成立。
+
+	对于\ref{lem:a.2.1.2}，注意到存在\(A_i\)的有限交\(B = \bigcup_{i=1}^n A_i\) 使得\(\mu(A-B) \leq \epsilon\)从而\(\mu(E-B)\leq \epsilon\)。由于\(\mu(B-E)\leq \mu(A-E)\leq \epsilon\)，故结果成立。
+
+	对于\ref{lem:a.2.1.3}，令\(A_n \in \mathcal{A}\)为一列包含包含\(E\)的集合，且满足对每个\(A_n\)都有\(\mu^*(A_n) \leq \mu^*(E)+ 1/n\)，并令\(C = \bigcap_{n} A_n\)。
+	显然\(C \in \mathcal{A}_{\delta\sigma}\)以及\(B\supseteq E\)，故根据\hyperref[prop:a.1.monotonicity]{单调性}有\(\mu^*(C) \geq \mu^*(E)\)。
+	对于另一个不等式，只需注意到我们有\(B\subseteq A_n\)因而对任意\(n\)均有\(\mu^*(C)\leq \mu^*(A_n) \leq \mu^*(E)+1/n\)。
+\end{proof}
+
+\begin{theorem} \label{thm:a.2.2}
+	假定\(\mu\)在\(\mathcal{A}\)上是\(\sigma\)有限测度。\(B\in\mathcal{A}\)当且仅当存在\(A\in\mathcal{A}_{\delta\sigma}\)以及一个\(\mu^*(A) = 0\)集合\(N\)，使得\(B=A-N\)（亦可表示为\(B = A\cap N^c\)）。
+\end{theorem}
+\begin{proof}
+	若\(A \in \mathcal{A}_{\sigma\delta}\)，从\lemref{lem:a.1.6}和\lemref{lem:a.1.7}可知\(A\in \mathcal{A}^*\)。
+	从\secref{sec:a.1}的\eqref{eq:a.1.2}以及\hyperref[prop:a.1.monotonicity]{单调性}我们可以得知若集合\(N\)满足\(\mu^*(N)=0\)则\(N\)是可测的，故再次使用\lemref{lem:a.1.7}便知\(A\cap N^c \in \mathcal{A}^*\)。
+	接下来证明必要性。令\(\Omega_i\)为一族不相交的集合，并满足\(\mu(\Omega_i) < +\infty\)且\(\Omega = \bigcup_{i} \Omega_i\)。令\(B_i = B\cap\Omega_i\)，并令\(A_i^n\)为\lemref{lem:a.2.1}中所述，使得\(A_i^n\supseteq B_i\)且有\(\mu^*(A_i^n)\leq \mu^*(E_i) + 1/(n2^i)\)。
+	接着令\(A_n = \bigcup_{i=1}^n A_i^n\)，我们就有 \(B\subseteq A_n\)以及
+	\[A_n - B \subseteq \sum_{i=1}^{+\infty}\del{A_i^n - B_i}\]
+	故由\hyperref[prop:a.1.subadditivity]{次可加性}可以得到
+	\[\mu^*(A_n - B) \leq \sum_{i=1}^{+\infty}\mu^*\del{A_i^n - B_i}\]
+	由于\(A_n \in \mathcal{A}_\sigma\)，故有\(B \subseteq A = \bigcap_n A_n\)。接着定义\(N := A-B\)，注意到对每个\(n\)均有\(N\subseteq A_n-B\)，由\hyperref[prop:a.1.monotonicity]{单调性}可知\(\mu^*(N) = 0\)。
+
+	若测度空间\(\del{\Omega, \mathcal{F}, \mu}\)中\(\mathcal{F}\)包含了所有零测集的子集，则称\(\mathcal{F}\)关于\(\mu\)是\term{完备的}（complete），并称\(\del{\Omega, \mathcal{F}, \mu}\)为\term{完备测度空间}（complete measure space）。
+	在\thmref{thm:a.2.2}的证明中我们说明了\(\del{\Omega, \mathcal{A}^*, \mu^*}\)是完备的，接下来我们将要证明\(\del{\Omega, \sigma(A), \mu}\)的完备化是\(\del{\Omega, \mathcal{A}^*, \mu^*}\)。
+\end{proof}
+
+\begin{theorem} \label{thm:a.2.3}
+	对于测度空间\(\del{\Omega, \mathcal{F}, \mu}\)，存在一与之对应的完备测度空间\(\del{\Omega, \bar{\mathcal{F}}, \bar{\mu}}\)称之为\(\del{\Omega, \mathcal{F}, \mu}\)的\term{完备化}（completion），其满足：\begin{enumerate}
+		\item 对于\(A\in \mathcal{F}\)和\(B\subseteq N \in \mathcal{F}\)，其中\(N\)为\(\mu\)零测集，有\(E \in \bar{\mathcal{F}} \Leftrightarrow E = A\cup B\)。
+		\item \(\mu\)与\(\bar{\mu}\)在\(\mathcal{F}\)上相等。
+	\end{enumerate}
+\end{theorem}
+\begin{proof}
+	证明的第一步是验证\(\bar{\mathcal{F}}\)是一个\(\sigma\)域。
+	对于\(E_i = A_i\cup B_i\)，式中\(A_i \in \mathcal{F}, B_i \subseteq N_i \in \mathcal{F}, \mu(N_i)=0\)，由\(\bigcup_{i}A_i \in \mathcal{F}\)以及\hyperref[prop:a.1.subadditivity]{次可加性}可知\(\mu\del{\bigcup_i N_i} \leq \sum_i \mu(N_i) = 0\)，故\(\bigcup_i E_i \in \bar{\mathcal{F}}\)。
+	接着验证对补运算封闭。若\(E = A\cup B\)且\(B \subseteq N\)，则有\(B^c \supseteq N^c\)，从而有
+	\[E^c = A^c \cap B^c = (A^c\cap N^c)\cup(A^c\cap B^c\cap N)\]
+	由于\(A^c\cap N^c \in \mathcal{F}\)以及\(A^c\cap B^c\cap N \subseteq N\)，故\(E^c \in \bar{\mathcal{F}}\)。
+
+	我们用一种显而易见的方式定义\(\bar{\mu}\)：若\(E\)是由来自\(\mathcal{F}\)的集合\(A\)以及\(\mu\)零测集\(N\)的子集\(B_i\)所生成的并，即\(E = A \cup B\)，则定义\(\bar{\mu}(E) = \mu(A)\)。首先说明\(\bar{\mu}\)是良定义的，即说明若\(E = A_i\cup B_i, i=1,2\)为两个符合上述条件的分解，则有\(\mu(A_1)=\mu(A_2)\)。
+	令\(A_0 = A_1\cap A_2\)以及\(B_0 = B_1\cup B_2\)。那么我们就构造出了第三种分解\(A = A_0\cup B_0\)，其中\(A_0 \in \mathcal{F}, B_0 \subseteq N_1\cup N_2\)并在当\(i=1\)或\(2\)时有
+	\[\mu(A_0) \leq \mu(A_i) \leq \mu(A_0) + \mu(N_1\cup N_2) = \mu(A_0)\]
+	最后一步是验证\(\bar{\mu}\)是测度，这个任务比较简单。令\(E_i = A_i \cup B_i\)互不相交，则\(\bigcup_i E_i\)可以被分解为\(\bigcup_i A_i\cup (\bigcup_i B_i)\)，显然\(A_i \subseteq E_i\)也是互不相交的，故而有
+	\[\bar{\mu}\del{\bigcup_i E_i} = \mu\del{\bigcup_i A_i} = \sum_i \mu(A_i) = \sum_i \bar{\mu}(E_i)\]
+\end{proof}
+
+依托\thmref{thm:1.1.11}，我们可以在\(\del{\R^d, \mathcal{R}^d}\)上定义勒贝格测度\(\lambda\)。借助\thmref{thm:a.2.3}我们可以将\(\lambda\)延拓到它的完备化空间\(\del{\R, \bar{\mathcal{R}^d}}\)上。
+至此，一个很自然（甚至听起来带点乐观色彩）的问题就是：有不在\(\bar{\mathcal{R}^d}\)中的集合吗？答案是肯定的，而且我们接下来就会展示一个\(\R\)的不可测子集。
+\subsection*{\(\intco{0,1}\)的不可测子集}
+构造该集合的关键是利用\(\lambda\)的平移不变形，即如果\(A \in \bar{\mathcal{R}}\)并定义\(x+A = \{x+y: y\in A\}\)，则\(x+A\in \bar{\mathcal{R}}\)且有\(\lambda(A)=\lambda(x+A)\)。
+定义等价关系\(x\sim y := x-y \in \Q\)。根据选择公理，我们可以从每个等价类中选出一个元素构成一个新集合\(B\)而这个集合就是一个不可测集。
+\begin{theorem} \label{thm:a.2.4}
+	\(B \notin \bar{\mathcal{R}^d}\)
+\end{theorem}
+\begin{proof}
+	证明的关键在于：
+	\begin{lemma}\label{lem:a.2.5}
+		若\(E \subseteq \intco{0,1}\)是\(\bar{\mathcal{R}^d}\)的元素且\(x \in \intoo{0,1}\)，定义\(x+^\prime E = \{(x+y) \mod 1:y\in E\}\)，则\(\lambda(E) = \lambda(x+^\prime E)\)。
+	\end{lemma}
+	\begin{proof}
+		令\(A = E\cap \intco{0,1-x}\)及\(B = E\cap\intco{1-x,1}\)。之后令\(A^\prime = x+A = \{x+y: y\in A\}\)及\(B^\prime = (x-1)+B\)。根据平移不变形，\(A^\prime,B^\prime \in \bar{\mathcal{R}}\)且\(\lambda(A) = \lambda(A^\prime), \lambda(B) = \lambda(B^\prime)\)。
+		由于\(A^\prime \subseteq \intco{x,1}\)和\(B^\prime \subseteq \intco{0,x}\)是不交的，故有
+		\[\lambda(E) = \lambda(A)+\lambda(B) = \lambda(A^\prime)+\lambda(B^\prime) = \lambda(x+^\prime E)\]
+	\end{proof}
+	根据\lemref{lem:a.2.5}我们便可断定\(B\)是不可测的。如果\(B\)可测，那么\(q+^\prime B, q \in \Q\)就是一列互不相交的可测集且均为\(\intco{0,1}\)的子集，并且它们具有相同的测度\(\alpha\)，然后我们还有
+	\[\bigcup_{q\in\Q}q+^\prime B = \intco{0,1}=1\]
+	若\(\alpha > 0\)则\(\lambda(\intco{0,1})=+\infty\)，若\(\alpha=0\)则\(\lambda(\intco{0,1})=0\)，无论哪种情况都与事实\(\lambda(\intco{0,1})=1\)不符。
+\end{proof}
+该集合称为\term{维塔利集}（Vitali set）。
+\begin{exercise}
+	\item 令\(B\)为\thmref{thm:a.2.4}中构造的不可测集。
+	\begin{enumerate}
+		\item\label{e2.1} 令\(B_q=q+^\prime B\)。试说明若\(D_q \subseteq B_q\)可测，则\(\lambda(D_q) = 0\)。
+		\item 根据\ref{e2.1}说明若\(A\subseteq \R\)具有正测度，则存在\(A\)的子集\(S\)，其为不可测集。
+	\end{enumerate}
+	\begin{claim}
+		\(\R^d\)中全等的可测集必有相同的勒贝格测度。
+	\end{claim}
+	\item 通过以下步骤证明在\(d=2\)时该断言成立，
+	\begin{exercise}
+		\item 若\(B\)由矩形\(A\)旋转得到，则\(\lambda^*(B)=\lambda(A)\)。
+		\item 若\(C\)与\(D\)全等，则\(\lambda^*(C)=\lambda^*(D)\)。
+	\end{exercise}
+\end{exercise}
+
+\subsection*{巴拿赫-塔斯基定理}
+巴拿赫与塔斯基（1924）利用选择公理证明了可以将\(\R^3\)中的球\(\{x:\envert{x}\leq 1\}\)分割为有限个集合\(A_1,\dots, A_n\)并找到与之全等的一系列集合\(B_1, \dots, B_n\)，其并为两个半径为\(1\)的球。由于全等的可测集必有相同的勒贝格测度，故每个\(A_i\)必须是不可测集。该构造仰赖于\(\R^3\)的旋转构成的群，即\(SO_3\)，是非阿贝尔群。林登鲍姆证明了在\(\R^2\)的有界子集中这样的分割是不存在的。巴拿赫-塔斯基定理的通俗说法，可以参考French（1988）。
+\subsection*{索洛维定理}
+选择公理在不可测集的构造上扮演了相当重要的角色。索洛维（1970）证明了选择公理是不可或缺的，用他的话说就是``我们证明了勒贝格不可测集的存在性在不使用选择公理的策梅洛-弗伦克尔集合论下是无法证明的。''读者现在可以认为\(\R^d\)下几乎所有``常用的''子集均在\(\bar{\mathcal{R}^d}\)内。
+
+\section{柯尔莫哥洛夫延拓定理} \label{sec:a.3}
+为了构造概率论研究中的基石，我们需要一个定理来说明在无穷乘积空间存在测度。
+令\(\N = \{1,2,\dots\}\)并令
+\[\R^\N = \{(\omega_1, \omega_2, \dots): \omega_i \in \R\}\]
+将\(\R^\N\)与\(\sigma\)域的乘积\(\mathcal{R}^\N\)配对生成可测空间，其中\(\mathcal{R}^\N\)是由\term{有限维矩形}（finite dimensional rectangles），即形如\(\{\omega:\omega_i \in \intoc{a_i,b_i}, -\infty \leq a_i < b_i \leq +\infty, i=1,\dots,n \}\)的集合生成。
+\begin{theorem}[\term{柯尔莫哥洛夫延拓定理}（Kolmogorov's extension theorem）]\label{thm:a.3.1}
+	假设我们在\((R^n, \mathcal{R}^n)\)上有一列相容的概率测度\(\mu_n\)，即
+	\[\mu_{n+1}\del{\del{\prod_{i=1}^n\intoc{a_1,b_i}}\times \R} = \mu_n\del{\del{\prod_{i=1}^n\intoc{a_1,b_i}}}\]
+\end{theorem}
+则在\((\R^\N, \mathcal{R}^\N)\)上存在唯一的概率测度\(P\)，其满足
+\[\label{thm:a.3.1.eq}\tag{\(*\)} P(\{\omega: \omega_i \in \intoc{a_i,b_i}, 1\leq i\leq n\}) = \mu_n\del{\prod_{i=1}^n\intoc{a_1,b_i}}\]
+一个相容测度列的重要例子是
+\begin{example}
+	令\(F_1, F_2, \dots\)为一列分布函数，并令\(\mu_n\)为\(\R^n\)上的测度，并有
+	\[\mu_n\del{\prod_{i=1}^n\intoc{a_1,b_i}} = \prod_{m=1}^n(F_m(b_m) - F_m(a_m))\]
+\end{example}
+此时，如果令\(X_n(\omega) = \omega_n\)，那么\(X_n\)之间相互独立，且\(X_n\)的分布函数是\(F_n\)。
+\begin{proof}[\thmref{thm:a.3.1}的证明]
+令\(\mathcal{S}\)为形如\(\{\omega:\omega_i \in \intoc{a_i,b_i},1\leq i\leq n\}\)的集合构成的集族，并借助\eqref{thm:a.3.1.eq}在\(\mathcal{S}\)上定义概率测度\(P\)。由于\(\mathcal{S}\)本身已是半代数，故而根据\thmref{thm:a.1.1}只需验证\(\mathcal{S}\)中的任意集合\(A\)可以写成\(\mathcal{S}\)中集合的不交并，那么我们就会得到\(P(A)\leq \sum_i P(A_i)\)。如果\(A\)是有限个集合的不交并，那么每个\(A_i\)就可根据对应的分量确定，而该结论由\thmref{thm:1.1.11}的证明而自然成立。
+
+现在假定\(A\)是无穷多个集合得到的不交并，并令\(\mathcal{A} = \{\bigcup_i^n A_i: A_i \in \mathcal{S}, n \in \N\}\)为\(\mathcal{S}\)生成的\(\sigma\)域。由于\(\mathcal{A}\)是集域（根据\lemref{lem:1.1.7}），定义
+\[B_n := A-\bigcup_{i=1}^n A_i\]
+则\(B_n\)是矩形的有限并，根据有限并的相关结论，我们有
+\[P(A) = P(B_n)+\sum_{i=1}^nP(A_i)\]
+因此我们只需要证明：
+\begin{lemma} \label{lem:a.3.3}
+	% TODO: 这段翻译很烂
+	若\(B_n \in \mathcal{A}\)且\(B_n \downarrow \emptyset\)，则\(P(B_n)\downarrow 0\)。
+\end{lemma}
+\begin{proof}
+	假设\(P(B_n) \downarrow \delta > 0\)，我们可以通过重复一些序列中的元素，使得
+	\[B_n = \bigcup_{k=1}^{K_n}\{\omega: \omega_i \in \intoc{a_i^k, b_i^k}, 1\leq i\leq n\}, -\infty\leq a_i^k<b_i^k \leq +\infty\]
+	证明的思路是用一系列与之有相同概率测度的矩形紧集来逼近\(B_n\)并用康托尔对角线放法说明\(\bigcap_n B_n \neq \emptyset\)。
+	存在集合\(C_n \subseteq B_n\)，其形如
+	\[C_n = \bigcup_{k=1}^{K_n}\{\omega: \omega_i \in \intoc{\bar{a}_i^k, \bar{b}_i^k}, 1\leq i\leq n\}, -\infty\leq \bar{a}_i^k<\bar{b}_i^k \leq +\infty\]
+	并满足\(P(B_n - C_n) \leq \delta/2^{n+1}\)。令\(D_n = \bigcap_{m=1}^n C_m\)，我们就有
+	\[P(B_n-D_n)\leq\sum_{m=1}^n P(B_m-C_m) \leq \delta/2\]
+	故我们有\(P(D_n)\downarrow\lim\limits_{n\rightarrow +\infty}P(D_n \geq \delta/2)\)。
+	故存在集合列\((C_n^*)_{n\geq 1}, (B_n^*)_{n\geq 1}\)，其中\(C_n^*, B_n^* \subseteq \R^n\)使得
+	\[C_n = \{\omega: (\omega_1, \dots, \omega_n) \in C_n^*\}, D_n = \{\omega: (\omega_1, \dots, \omega_n) \in D_n^*\}\]
+	注意到
+	\[C_n = C_n^*\times\R\times\R\dots, D_n = D_n^*\times\R\times\R\dots\]
+	可以看出\(C_n\)与\(C_n^*\)（\(D_n\)与\(D_n^*\)也是）是存在一定联系的，只不过\(C_n \in \R^\N\)而\(C_n^* \in \R^n\)。
+
+	由于\(C_n^*\)是一系列不交闭矩形集的并，故集合
+	\[D_n^* = C_n^*\cap\del{\bigcap_{m=1}^{n-1}(C_m^*\times\R^{n-m})}\]
+	是紧集。
+	对于每个\(m\)，令\(\omega_m \in D_m\)。由于\(D_m \subseteq D_1\)故有\(\omega_{m,1}\)（即\(\omega_m\)的第一个分量）在\(D_1^*\)中。
+	由于\(D_1^*\)是紧集，故可以选择子序列\(m(1,j)\geq j\)使得分量对该子序列有极限：
+	\[\lim\limits_{j\rightarrow+\infty}\omega_{m(1,j),1} = \theta_1\]
+	若\(m\geq 2\)，则有\(D_m \subseteq D_2\)从而\((\omega_{m,1}, \omega_{m,2}) \in D_2^*\)。由于\(D_2^*\)是紧集，因此存在子序列（比如说\(m(2,j) = m(1, i_j), i_j \geq j\)）有使得分量对该子序列有极限：
+	\[\lim\limits_{j\rightarrow +\infty}\omega_{m(2, j),2} = \theta_2\]
+	重复上述工作，我们可以知道为\(m(k-1, j)\)存在子序列\(m(k,j)\)使得分量对该子序列存在极限：
+	\[\lim\limits_{j\rightarrow +\infty}\omega_{m(k, j),k} = \theta_k\]
+	令\(\omega^\prime_i = \omega_{m(i,i)}\)。那么\(\omega^\prime_i\)是一个二重序列，即由上述子序列构成的序列，那么对任意\(k\)均有\(\lim\limits_{i\rightarrow +\infty} \omega^\prime_{i,k} = \theta_k\)。
+	现在我们发现对所有的\(i\)来说\(\omega^\prime_{i,1} \in D_1^*\)均成立，再注意到\(D_1^*\)是闭集，故有\(\theta_1 \in D_1^*\)。
+	对于第二个分量，我们有\(\forall i\geq 2, (\omega^\prime_{i,1}, \omega^\prime_{i,2}) \in D_2^*\)，加上\(D_2^*\)是闭集，我们就有\((\theta_1, \theta_2) \in D_2^*\)。
+	重复上述工作，我们就有\(\forall k, (\theta_1, \dots, \theta_k) \in D_k^*\)故而\((\forall k, \theta_1, \dots, \theta_k)\in D_k\)（注意这里没有星号，现在我们谈论的是\(\R^\N\)的子集。）以及
+	\[\emptyset \neq \bigcap_k D_k \subseteq \bigcap_k B_k\]
+	从而导出矛盾。
+\end{proof}
+	故该定理成立。
+\end{proof}
+\section{拉东-尼科迪姆定理} \label{sec:a.4}
+本节我们将证明拉东-尼科迪姆定理。为了证明该定理，我们需要从一个看起来不是那么与之相关的内容开始。令\((\Omega, \mathcal{F})\)为一可测空间，称\(\alpha\)为\((\Omega, \mathcal{F})\)上的\term{带号测度}（signed measure），如果其满足
+\begin{enumerate}
+	\item \(\alpha\)的值域为\(\intoc{-\infty, +\infty}\)。
+	\item \(\alpha(\emptyset) = 0\)
+	\item 若\(E=+_i E_i\)是不交并，则\(\alpha(E) = \sum_i \alpha(E_i)\)并具有以下含义：
+	\begin{itemize}
+		\item 若\(\alpha(E)<+\infty\)，则该和式绝对收敛并等于\(\alpha(E)\)。
+		\item \(\alpha(E)=+\infty\)，则\(\sum_i\alpha(E_i)^-<+\infty\)且\(\sum_i\alpha(E_i)^+=+\infty\)。
+	\end{itemize}
+\end{enumerate}
+显然，带号测度不能同时将\(+\infty\)和\(-\infty\)纳入值域，因为如果这样的话\(\alpha(A)+\alpha(B)\)可能会没有意义。
+大多数情况下带号测度的值域为\(\intoc{-\infty, +\infty}\)和\(\intco{-\infty, +\infty}\)中的一个。在本书中我们采用前者作为值域。和往常一样，我们来看一些例子以便理解带号测度的定义。
+\begin{example} \label{ex:a.4.1}
+	令\(\mu\)为一测度，若函数\(f\)满足\(\int_\Omega f^-\,\dif \mu < +\infty\)则令\(\alpha(A) = \int_A f\,\dif\mu\)。某一节的练习说明了\(\alpha\)是一个带号测度。% FIXME: 原文也没说清楚是哪个练习。。。
+\end{example}
+\begin{example} \label{ex:a.4.2}
+	令\(\mu_1\)、\(\mu_2\)为测度且有\(\mu_2(\Omega)<+\infty\)，则\(\alpha(A)=\mu_1(A) - \mu_2(A)\)是一带号测度。
+\end{example}
+
+若尔当分解，即\thmref{thm:a.4.6}，会说明\exref{ex:a.4.2}是带号测度的一种一般表示。
+为了证明这个结论，我们先从两个定义开始。称集合\(A\)是\term{正}的（positive）（正集合），若对\(A\)的每一个可测子集\(B\)均有\(\alpha(B)\geq 0\)；反之，称集合\(A\)是\term{负}的（negative）（负集合），若对\(A\)的每一个可测子集\(B\)均有\(\alpha(B)\leq 0\)。
+\begin{exercise}
+	\item 证明在\exref{ex:a.4.1}中，\(A\)是正的当且仅当\(\mu(A\cap \{x:f(x)< 0\}) = 0\)。
+\end{exercise}
+\begin{lemma} \label{lem:a.4.3}
+	\begin{enumerate}
+		\item \label{lem:a.4.3.1} 正集合的任意可测子集均是正集合。
+		\item \label{lem:a.4.3.2} 若集合列\((A_n)\)中的集合均为正集合，则\(A=\bigcup_n A_n\)为正集合。
+	\end{enumerate}
+\end{lemma}
+\begin{proof}
+	\ref{lem:a.4.3.1}是显然的。对于\ref{lem:a.4.3.2}，只需注意到
+	\[B_n = A_n\cap\del{\bigcap_{m=1}^{n-1}A_m^c} \subseteq A_n\]
+	因而集合列\((B_n)\)中的每一项均是正的且是不交的，而且还有\(\bigcup_n B_n = \bigcup_n A_n\)。
+	令\(E\)为\(A\)的可测子集构造集列\((E_n = E\cap B_n)\)。故我们有\(\alpha(E_n)\geq 0\)由于\((B_n)\)由正集合构成故而\(\alpha(E) = \sum_n \alpha(E_n) \geq 0\)。
+\end{proof}
+
+将\lemref{lem:a.4.3}中的``正''换成``负''结论依然成立。
+下面的定理将是证明\thmref{thm:a.4.5}的关键。
+\begin{lemma} \label{lem:a.4.4}
+	令\(E\)为一带号测度为负数的集合，则存在负集合\(F\)使得\(F\subseteq E\)且\(\alpha(F)<0\)。
+\end{lemma}
+\begin{proof}
+	如果\(E\)本身就是负集合，则结论成立。若\(E\)非负，考虑符合下列条件的最小正整数\(n_1\)：存在\(E_1\subseteq E\)使得\(\alpha(E_1) \geq 1/n_1\)，
+	若\(k\geq 2\)，若\(F_k = E-\bigcup_{i=1}^{k-1}E_i\)为负集合，证明结束。如若不然，考虑符合下列条件的最小正整数\(n_k\)：存在\(E_k\subseteq F_k\)使得\(\alpha(E_k) \geq 1/n_k\)。
+	如果上述构造过程无法在有限的\(k\)处停止，则考虑
+	\[F=\bigcap_k F_k = E-\del{\bigcup_k E_k}\]
+	由于\(0>\alpha(E)>-\infty\)且\(\alpha(E_k)\geq 0\)，根据带号测度的定义我们有
+	\[\alpha(E) = \alpha(F)+\sum_{k=1}^{+\infty}\alpha(E_k)\]
+	由于\(\alpha(F)\leq \alpha(E)< 0\)故求和的结果是有限值。
+	根据上面的式子以及\(F\)的构造方式，我们知道不存在\(F\)的子集\(G\)使得\(\alpha(G) > 0\)，因为如果这样的集合存在那么就一定存在正整数\(N\)使得\(\alpha(G)\geq 1/N\)从而与\(F\)的性质矛盾。
+\end{proof}
+
+\begin{theorem}[\term{哈恩分解定理}（Hahn decomposition theorem）]
+	\label{thm:a.4.5}
+	若\(\alpha\)为一带号测度。存在正集合\(A\)与负集合\(B\)使得\(A\cup B=\Omega\)且\(A\cap B = \emptyset\)。
+\end{theorem}
+\begin{proof}
+	令\(c=\inf\{\alpha(B): B\text{是负集合}\}\leq 0\)。令\((B_i)\)为一集列且有\(\alpha(B_i) \downarrow 0\)。令\(B = \bigcup_i B_i\)。根据\lemref{lem:a.4.3}，\(B\)是负集合，故根据定义\(\alpha(B) \geq c\)。
+	接下来我们说明\(\alpha(B)\leq c\)。注意到\(\alpha(B) = \alpha(B_i)+\alpha(B-B_i) \leq \alpha(B_i)\)，接下来只要令\(i\rightarrow +\infty\)即可。
+	根据上面这两条不等式，我们有\(\alpha(B)=c\)，而且根据带号测度的定义我们还有\(c>-\infty\)。令\(A=B^c\)。我们接下来证明\(A\)是正集合。
+	如果\(A\)有子集\(E\)使得\(\alpha(E)<0\)，那么根据\lemref{lem:a.4.4}，\(E\)会包含一个具有负带号测度的子集\(F\)，但这样的话\(B\cup F\)作为一个负集合却有性质\(\alpha(B\cup F) = \alpha(B)+\alpha(F) < c\)从而与\(c\)的定义矛盾。
+\end{proof}
+
+哈恩分解并不是唯一的。在\exref{ex:a.4.1}中，\(A\)可以是任意满足
+\[\{x: f(x)>0\}\subseteq A\subseteq \{x: f(x)\geq 0\} \text{ a.e.}\]
+的集合。其中\(B\subseteq C\) a.e. 表示\(\mu(B\cap C^c)=0\)。上面这个例子属于一个比较典型的例子。
+假如\(\Omega = A_1\cup B_1=A_2\cup B_2\)为两个哈恩分解，那么我们会发现\(A_2\cap B_1\)既是正集合又是负集合，故它是\term{零集合}（null set）：其所有子集的测度为\(0\)。同样地，\(A_1\cap B_2\)也是零集合。
+
+给定两个测度\(\mu_1\)和\(\mu_2\)，如果存在集合\(A\)使得\(\mu_1(A)=\mu_2(A^c)=0\)则称这两个测度\term{互为奇异测度}（mutually singular）。此时我们也成\(\mu_1\)较\(\mu_2\)是\term{奇异}的（singular with respect to (w.r.t.)）并记为\(\mu_1\perp\mu_2\)。
+\begin{exercise}[start=2]
+	\item 证明康托尔集上的均匀分布（\exref{ex:1.2.7}）定义的测度较勒贝格测度是奇异的。
+\end{exercise}
+
+
+\begin{theorem}[\term{若尔当分解定理}（Jordan decomposition theorem）]
+	\label{thm:a.4.6}
+	令\(\alpha\)为一带号测度。存在相互奇异的测度\(\alpha_+\)和\(\alpha_-\)使得\(\alpha=\alpha_+-\alpha_-\)。此外，该分解是唯一的。
+\end{theorem}
+\begin{proof}
+	令\(\Omega = A\cup B\)为一哈恩分解。并令
+	\[\alpha_+(E) = \alpha(E\cap A)\ \text{ 以及 }\ \alpha_-(E) = \alpha(E\cap B)\]
+	由于\(A\)是正的\(B\)是负的，故\(\alpha_+\)和\(\alpha_-\)均为测度。
+	我们还有\(\alpha_+(A^c)=\alpha_-(A)=0\)故二者互为奇异测度。
+	接下来证明唯一性，假如\(\alpha=\nu_1-\nu_2\)以及有集合\(D\)满足\(\nu_1(D)=\nu_2(D^c)=0\)。
+	此时令\(C=D^c\)，那么\(\Omega=C\cup D\)是一个哈恩分解，那么根据\(D\)选择我们还有
+	\[\nu_1(E) = \alpha(C\cap E)\ \text{ 以及 }\ \nu_2(E)=-\alpha(D\cap E)\]
+	根据哈恩分解的性质，我们知道\(A\cap D = A\cap C^c\)和\(B\cap C=A^c\cap C\)是零集合，故\(\alpha(E\cap C) = \alpha(E\cap(A\cup C)) = \alpha(E\cap A)\)且\(\nu_1=\alpha_+\)。
+\end{proof}
+\begin{exercise}[start=3]
+	\item 证明\(\alpha_+(E)=\sup\{\alpha(F):F\subseteq E\}\)。
+\end{exercise}
+\begin{remark}
+	令\(\alpha\)为\((\R, \mathcal{R})\)上的\term{有限带号测度}（finite signed measure）（即值域不包含\(+\infty\)和\(-\infty\)）。令\(\alpha=\alpha_+-\alpha_-\)为其若尔当分解。定义\(A(x) = \alpha(\intoc{-\infty,x})\)，\(F(x) = \alpha_+(\intoc{-\infty,x})\)和\(G(x) = \alpha_-(\intoc{-\infty,x})\)。故有限带号测度的分布函数可以表示为两个有界增函数的差。根据\ref{ex:a.4.2}，其逆命题也是成立的。定义\(\alpha\)的\term{总变差}（total variation）为\(\envert{\alpha} = \alpha_++\alpha_-\)，此处\(\envert{\alpha}\del{\intoc{a, b}}\)就是数学分析课本中\(A\)在区间\(\intoc{a,b}\)上的总变差。相关例子可以参考Royden (1988), p. 103.
+	这里我们去掉了区间的左端点，因为左端点值的突变不影响总变差，尽管其可能存在突变。
+\end{remark}
+第三个，也是最后一个分解定理是：
+\begin{theorem}[\term{勒贝格分解定理}（Lebesgue decomposition theorem）]
+	\label{thm:a.4.7}
+	令\(\mu, \nu\)为\(\sigma\)有限测度，则\(\nu = \nu_r+\nu_s\)，其中\(\nu_s\)较\(\mu\)是奇异的且
+	\[\nu_r(E) = \int_E g \,\dif\mu\]
+\end{theorem}
+\begin{proof}
+	由于可以对\(\Omega\)做分解\(\Omega = \bigplus_i\Omega_i\)，故我们可以不失一般性地认为\(\mu\)和\(\nu\)均是有限测度。定义\(\mathcal{G} = \{g: g \geq 0 \text{ 且 } \forall E \int_E g\,\dif \mu \leq \nu(E)\}\)。
+	\begin{enumerate}[label=(\alph*)]
+		\item \label{proof:a.4.3.a}\(g,h\in\mathcal{G}\Rightarrow g\vee h \in\mathcal{G}\)
+		\begin{proof}[\ref{proof:a.4.3.a}的证明]
+			定义\(A = \{g:\ g>h\}\)、\(B = \{g:\ g\leq h\}\)。那么我们有
+			\[\int_E g\vee h\,\dif\mu=\int_{E\cap A}g\,\dif\mu+\int_{E\cap B}h\,\dif\mu\leq\nu(E\cap A)+\nu(E\cap B)=\nu(E)\]
+		\end{proof}
+		接着，我们定义\(\kappa=\sup\{\int_\Omega g\,\dif\mu:\ g\in\mathcal{G}\}\leq\nu(\Omega)<+\infty\)。
+		接着选择\(g_n\)满足\(\int_\Omega g_n\,\dif\mu>\kappa-1/n\)并令\(h_n=\bigvee_{i=1}^n h_i\)。
+		根据\ref{proof:a.4.3.a}，我们知道\((h_n)\)是一个升列且有\(\lim\limits_{n\rightarrow+\infty}h_n=h\)。
+		由\(\kappa\)的定义以及单调收敛定理，再加上\(g_n\)的选取方式我们有
+		\[\kappa\geq\int_\Omega h\,\dif\mu=\lim\limits_{n\rightarrow+\infty}\int_\Omega h_n\,\dif\mu\geq\lim\limits_{n\rightarrow+\infty}\int_\Omega g_n\,\dif\mu=\kappa\]
+		那么我们就可以定义\(\nu_r(E)=\int_Eh\,\dif\mu\)以及\(\nu_s(E)=\nu(E)-\nu_r(E)\)。故我们现在的工作是要证明：
+		\begin{enumerate}[label=(\alph*),start=2]
+			\item\label{proof:a.4.3.b} \(\nu_s\)是对应于\(\mu\)的奇异测度。
+			\begin{proof}[\ref{proof:a.4.3.b}的证明]
+				令\(\epsilon>0\)并令\(\nu_s-\epsilon\mu\)的哈恩分解为\(\Omega=A_\epsilon\cup B_\epsilon\)。
+				根据\(\nu_r\)的定义以及\(A_\epsilon\)是\(\nu_s-\epsilon\mu\)下的正集合（从而有\(\epsilon\mu(A_\epsilon\cap E)\leq\nu_s(A_\epsilon\cap E)\)），
+				\[\int_E(h+\epsilon1_{A_\epsilon})\,\dif\mu=\nu_r(E)+\epsilon\mu(A_\epsilon\cap E)\leq\nu(E)\]
+				该式子对任意可测的\(E\)均成立，从而\(k=h+\epsilon1_{A\epsilon}\in\mathcal{G}\)。
+				由此我们可以得到\(\mu(A_\epsilon)=0\)，如若不然，我们会发现\(\int_\Omega k\,\dif\mu>\kappa\)从而与\(\kappa\)的定义矛盾。
+				接着令\(A=\bigcup_nA_{1/n}\)，我们有\(\mu(A)=0\)。
+				为了得到\(\nu_s(A^c)=0\)，只需观察到如果\(\nu_s(A^c)>0\)那么对于足够小的\(\epsilon>0\)就会有\((\nu_s-\epsilon\mu)(A^c)>0\)，但是\(A^c\subseteq B_\epsilon\)是一个负集合，矛盾。
+			\end{proof}
+		\end{enumerate}
+	\end{enumerate}
+\end{proof}
+\begin{exercise}[start=5]
+	\item 证明勒贝格分解是唯一的，你可以不是一般性地认为\(\mu\)和\(\nu\)均为有限测度。
+\end{exercise}
+
+现在我们已经完成了本节主要任务的准备工作。如果\(\mu(A)=0\Rightarrow\nu(A)=0\)则称测度\(\nu\)对于测度\(\mu\)\term{绝对连续}（absolutely continuous with respect to \(\mu\)）（记作\(\nu\ll\mu\)）。
+\begin{exercise}[start=4]
+	\item 若\(\mu_1\ll\mu_2\)且\(\mu_2\perp\nu\)则\(\mu_1\perp\nu\)。
+\end{exercise}
+\begin{theorem}[\term{拉东-尼科迪姆定理}（Radon-Nikodym theorem）]
+	\label{thm:a.4.8}
+	若\(\mu\)、\(\nu\)为\(\sigma\)有限测度且\(\nu\)对于\(\mu\)绝对连续，则存在\(g\geq0\)使得\(\nu(E)=\int_Eg\,\dif\mu\)。若\(h\)为另一满足此性质的函数，则\(g\)与\(h\)几乎处处相等。
+\end{theorem}
+\begin{proof}
+	令\(\nu=\nu_r+\nu_s\)为一若尔当分解。选择\(A\)满足\(\nu_s(A^c)=0\)且\(\mu(A)=0\)。由于\(\nu\ll\mu\)故而有\(0=\nu(A)\geq\nu_s(A)\)且\(\nu_s\equiv0\)。
+	为了证明唯一性，我们注意到如果\(\int_Eg\,\dif\mu=\int_Eh\,\dif\mu\)对任意\(E\)均成立，那么选择任意测度有限的\(E\subseteq\{g>h,g\leq n\}\)，我们就有\(\mu(g>h,g\leq n)=0\)对任意\(n\)均成立，故\(\mu(g>h)=0\)。用同样的方法，我们还可以得到\(\mu(g<h)=0\)。
+\end{proof}
+\begin{example}
+	\thmref{thm:a.4.8}可能会在\(\mu\)不是\(\sigma\)有限时失效。
+	考虑\((\Omega,\mathcal{F})=(\R,\mathcal{R})\)，\(\mu\)为计数测度，\(\nu\)为勒贝格测度时的情况。
+\end{example}
+
+由于\thmref{thm:a.4.8}证明了\(g\)的存在性，故有时我们会将\(g\)记为\(\od{\nu}{\mu}\)，这个记号暗示了下面的性质，这些性质留作习题给读者证明。
+\begin{exercise}[start=6]
+	\item 若\(\nu_1,\nu_2\ll\mu\)则\(\nu_1+\nu_2\ll\mu\)并有
+	\[\od{\nu_1+\nu_2}{\mu}=\od{\nu_1}{\mu}+\od{\nu_2}{\mu}\]
+	\item 若\(\nu\ll\mu\)且\(f\geq0\)，则\(\int_\Omega f\,\dif\nu=\int_\Omega f\od{\nu}{\mu}\,\dif\mu\)。
+	\item 若\(\pi\ll\nu\ll\mu\)，则\(\od{\pi}{\mu}=\od{\pi}{\mu}\cdot\od{\nu}{\mu}\)。
+	\item 若\(\nu\ll\mu\)且\(\mu\ll\nu\)，则\(\od{\mu}{\nu}=\del{\od{\nu}{\mu}}^{-1}\)。
+\end{exercise}
+\section{积分内的微分} \label{sec:a.5}
+在正文的某些地方我们需要交换微分与积分或求和的顺序。本节内容专门探讨了与之有关的结论。
+\begin{theorem} \label{thm:a.5.1}
+	令\((S, \mathcal{S}, \mu)\)为可测空间。并有函数\(f: S\times\mathcal{S}\mapsto \C\)。令\(\delta > 0\)，如果对任意\(x \in \intoo{y-\delta, y+\delta}\)有
+	\begin{enumerate}
+		\item\label{thm:a.5.1.1} \(\int_S\envert{f(x,s)} \mu(\dif s) < +\infty\)且\(u(x) = \int_S f(x,s) \mu(\dif s)\)。
+		\item\label{thm:a.5.1.2} 对于固定的\(s\)，\(\pd{f}{x}(x,s)\)存在且是关于\(x\)的连续函数。
+		\item\label{thm:a.5.1.3} \(v(x) = \int_S \pd{f}{x}(x,s) \mu(\dif s)\)在\(x=y\)处连续。
+		\item\label{thm:a.5.1.4} \(\int_S\int_{-\delta}^{\delta}\envert{\pd{f}{x}(y+\theta, s)} \dif \theta \mu(\dif s) < +\infty\)
+	\end{enumerate}
+	则\(u^\prime(y) = v(y)\)
+\end{theorem}
+\begin{proof}
+	令\(\envert{h} \leq \delta\)，根据\ref{thm:a.5.1.1}、\ref{thm:a.5.1.2}、\ref{thm:a.5.1.3}以及\ref{e1.7.4}中富比尼定理的形式，我们有
+	\[\begin{split}
+		u(y+h)-u(y)=&\int_S f(y+h, s)-f(y, s)\,\mu(\dif s)\\
+		=&\int_S\int_0^h \pd{f}{x}(y+\theta, s)\,\dif \theta\mu(\dif s)\\
+		=&\int_0^h\int_S \pd{f}{x}(y+\theta, s)\,\dif \theta\mu(\dif s)
+	\end{split}\]
+	上面的式子说明
+	\[\frac{u(y+h)-u(y)}{h} = \frac{1}{h}\int_0^h v(y+\theta) \dif \theta\]
+	由于\(v\)在\(y\)处连续，令\(h\rightarrow 0\)即可得到结果。
+\end{proof}
+
+\begin{example}
+	为了证明\secref{sec:3.3}中的结果，我们需要在
+	\[u(x) = \int_\R \cos(xs)e^{-s^2/2} \dif s\]
+	中的积分号之下求微分。
+	方便起见，这里就不带常数因子\((2\pi)^{1/2}\)并进行了换元以便使用\thmref{thm:a.5.1}。
+	显然，\ref{thm:a.5.1.1}和\ref{thm:a.5.1.2}成立。控制收敛定理说明映射
+	\[x\mapsto \int_\R -s\sin(sx)e^{-s^2/2}\,\dif s\]
+	是连续的，故而\ref{thm:a.5.1.3}成立。
+	对于\ref{thm:a.5.1.4}，注意到
+	\[\int_\R \envert{\pd{f}{x}(x, s)}\,\dif s = \int_\R\envert{s}e^{-s^2/2} \dif s < +\infty\]
+	这个结果与\(x\)无关，故而\ref{thm:a.5.1.4}成立。
+\end{example}
+
+下面的定理在一些情况下可能更为方便：
+\begin{theorem} \label{thm:a.5.3}
+	令\((S,\mathcal{S}, \mu)\)为一测度空间。令\(f: \R\times S \mapsto\C\)；令\(\delta>0\)以及\(x\in \intoo{y-\delta, y+\delta}\)。若：
+	\begin{enumerate}
+		\item \label{thm:a.5.3.1} \(u(x) = \int_S f(x, s)\,\mu(\dif s)\)，其中\(\int_S \envert{f(x, s)}\,\mu(\dif s) < +\infty\)。
+		\item \label{thm:a.5.3.2} 对于固定的\(s\)，\(\pd{f}{x}(x, s)\)存在且是关于\(x\)的连续函数。
+		\item \label{thm:a.5.3.3} \[\int_S \sup_{\theta \in \intcc{-\delta, \delta}}\envert{\pd{f}{x}(y+\theta, s)}\,\mu(\dif s) < +\infty\]
+	\end{enumerate}
+	则\(u^\prime(y)=v(y)\)。
+\end{theorem}
+\begin{proof}
+	根据\thmref{thm:a.5.1}，我们只需说明\ref{thm:a.5.1.3}和\ref{thm:a.5.1.4}成立。
+	由于
+	\[\int_{-\delta}^\delta \envert{\pd{f}{x}(y+\theta, s)}\,\dif \theta \leq 2\delta\sup_{\theta \in \intcc{-\delta, \delta}}\envert{\pd{f}{x}(y+\theta, s)}\]
+	因此\ref{thm:a.5.1.4}成立。
+	为了说明\ref{thm:a.5.1.3}成立，注意到
+	\[\envert{v(x) - v(y)} \leq \int_S \envert{\pd{f}{x}(x, s) - \pd{f}{x}(y,s)}\,\mu(\dif s)\]
+	\ref{thm:a.5.3.2}说明了积分项在\(x\rightarrow y\)时的极限是\(0\)。故待证明的结果可根据\ref{thm:a.5.3.2}以及控制收敛定理得到。
+\end{proof}
+
+为了说明这个定理的用处，我们要证明下面的命题：
+\begin{example}
+	对于\(\epsilon > 0\)，如果\(\forall \theta \in \intcc{-\epsilon, \epsilon},\phi(\theta) = \E e^{\theta Z} < +\infty \Rightarrow \phi^\prime(0) = \E Z\)
+\end{example}
+\begin{proof}
+	这里的\(\theta\)就是\thmref{thm:a.5.3}中的\(x\)，以及\(\mu\)是\(Z\)的分布。
+	令\(\delta = \epsilon/2\)。\(f(x,s) = e^{xs} \geq 0\)故根据假设\ref{thm:a.5.3.1}成立。
+	显然\(\pd{f}{x}(x, s) = se^{xs}\)是连续函数，所以\ref{thm:a.5.3.2}成立。
+	注意到存在常数\(C\)使得只要\(x \in \intoo{-\delta, \delta}\)就有\(\envert{s}e^{xs}\leq C(e^{-\epsilon s}+e^{\epsilon s})\)，故\ref{thm:a.5.3.3}成立，从而我们得到了结果。
+\end{proof}
+
+在\thmref{thm:a.5.3}中如果取\(S=\Z, \mathcal{S}=2^\Z\)并取\(\mu\)为计数测度，我们就有：
+\begin{theorem}
+	令\(\delta > 0\)。假设对于\(x \in \intoo{y-\delta, y+\delta}\)我们有：
+	\begin{enumerate}
+		\item \label{thm:a.5.5.1} \(u(x) = \sum_{i=1}^{+\infty}f_n(x)\)，其中\(\sum_{i=1}^{+\infty} \envert{f_n(x)} < +\infty\)。
+		\item \label{thm:a.5.5.2} 对每个\(n\)，\(f_n^\prime(x)\)存在且是关于\(x\)的连续函数。
+		\item \label{thm:a.5.5.3}  \(\sum_{i=1}^{+\infty}\sup_{\theta\in\intoo{-\delta, \delta}} \envert{f_n^\prime(y+\theta)} < +\infty\)
+	\end{enumerate}
+	则\(u^\prime(x)=v(x)\)。
+\end{theorem}
+\begin{example}
+	在\secref{sec:2.6}，我们想说明对于\(p\in\intoo{0,1}\)有
+	\[\del{\sum_{i=1}^{+\infty}(1-p)^n}^\prime = -\sum_{i=1}^{+\infty}n(1-p)^{n-1}\]
+\end{example}
+\begin{proof}
+	令\(f_n(x) = (1-x)^n, y=p\)，选择\(\delta\)使得\(\intcc{y-\delta, y+\delta} \subseteq \intoo{0,1}\)。
+	显然\(\sum_{n=1}^{+\infty} \envert{(1-x)^n}\)收敛故\ref{thm:a.5.5.1}成立。而\(f_n^\prime(x) = n(1-x)^{n-1}\)在\(\intcc{y-\delta, y+\delta}\)上连续，故\ref{thm:a.5.5.2}成立。
+	为了说明\ref{thm:a.5.5.3}成立，只需令\(2\eta = y-\delta\)，那么存在常数\(C\)使得只要\(x\in\intcc{y-\delta, y+\delta}\)且\(n\geq 1\)就有
+	\[n(1-x)^{n-1} = \frac{n(1-x)^{n-1}}{(1-\eta)^{n-1}}\cdot (1-\eta)^{n-1}\leq C(1-\eta)^{n-1}\]
+\end{proof}
+\section*{正态分布表}
+\[\Phi(x) = \int_{-\infty}^{x}\frac{1}{\sqrt{2\pi}}e^{-y^2/2} \dif y\]
+用法示例：\(\Phi(0.36)=0.6406, \Phi(1.34)=0.9099\)
+%\input{../normal.tex}
+\end{document}
