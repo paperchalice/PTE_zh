@@ -13,7 +13,7 @@
 
 \section{概率空间} \label{sec:1.1}
 书中的术语将以\textbf{粗体}标出。我们将从最基本的部分开始。
-\term{概率空间}（probability space）是由表示``试验结果''的集合\(\Omega\) 、表示``事件''的集合\(\mathcal{F}\)和一个负责给事件分配概率的函数\(P:\mathcal{F} \rightarrow \intcc{0, 1}\)构成的三元组\((\Omega, \mathcal{F}, P)\)。
+\term{概率空间}（probability space）是由表示``试验结果''的集合\(\Omega\) 、表示``事件''的集合\(\mathcal{F}\)和一个负责给事件分配概率的函数\(P:\mathcal{F} \rightarrow \intcc{0, 1}\)构成的三元组\((\Omega, \mathcal{F}, \probP)\)。
 我们假定\(\mathcal{F}\)是一个\term{\(\sigma\)域}（\(\sigma\)-field）（又称\term{\(\sigma\)代数}（\(\sigma\)-algebra））\footnote{书中会根据语境将两者混用}，是\(\Omega\)的（非空）子集族，并满足下列条件：
 \begin{enumerate}
 	\item \(A \in \mathcal{F} \Rightarrow A^c \in \mathcal{F}\)。
@@ -332,7 +332,7 @@
 \section*{习题}
 \begin{exercise}
 	\item 令\(\Omega = \R, \mathcal{F} = \{A\subseteq \R: A\text{或}A^c \text{可数}\}\)。当\(A\)可数时，\(P(A) = 0\)，反之则\(P(A) = 1\)。
-	证明\((\Omega, \mathcal{F}, P)\)是概率空间。
+	证明\((\Omega, \mathcal{F}, \probP)\)是概率空间。
 	\item 回顾\exref{ex:1.1.5}中\(\mathcal{S}_d\)的定义。
 	证明\(\sigma(\mathcal{S}_d) = \mathcal{R}^d\)，即由\(\R^d\)的博雷尔集构成的集族。
 	\item 给定一个\(\sigma\)-域\(\mathcal{F}\)，如果存在可数集\(\mathcal{C}\subseteq \mathcal{F}\)使得\(\sigma(\mathcal{C}) = \mathcal{F}\)，则称\(\mathcal{F}\)是\term{可数生成的}（countably generated）。
@@ -351,7 +351,7 @@
 当我们为概率空间定义随机变量的时候，事情会变得有意思起来。如果称定义在\(\Omega\)上的实值函数\(X\)满足\(\forall B\in \mathcal{R}, X^{-1}(B) = \{\omega: X(\omega) \in B\} \in \mathcal{F}\)，则称\(X\)为\term{随机变量}（random variable）。有时为了加强\(\sigma\)域的存在感，我们会称\(X\)是\term{\(\mathcal{F}\)可测}的（\(\mathcal{F}\)-measurable）或记为\(X \in \mathcal{F}\)。
 如果\(\Omega\)是一个离散概率空间（见\exref{ex:1.1.2}），那么任意函数\(X: \Omega \mapsto \R\)均为随机变量。
 另一个平凡但实用的随机变量是集合\(A \in \mathcal{F}\)的\term{指示函数}（indicator function）：
-\[1_A(\omega) = \begin{cases}
+\[\indicator_A(\omega) = \begin{cases}
 	1 & \omega \in A\\
 	0 & \omega \notin A
 \end{cases}\]
@@ -361,7 +361,7 @@
 \centering
 \begin{subfigure}{.4\textwidth}
 	\begin{tikzpicture}[scale=0.3]
-		\draw (-1,6) node[anchor=north east] {\large \((\Omega, \mathcal{F}, P)\)};
+		\draw (-1,6) node[anchor=north east] {\large \((\Omega, \mathcal{F}, \probP)\)};
 		\draw (0,0) -- (6,0) -- (6,6) -- (0,6) -- (0,0);
 		\draw (1,0) -- (2,3) -- (6,3);
 
@@ -380,7 +380,7 @@
 
 		\draw (3,0) node[anchor=south] {\(A\)};
 		\draw (0,2) node[anchor=south] {\((\R, \mathcal{R})\)};
-		\draw (6,2) node[anchor=south] {\(\mu = P\circ X^{-1}\)};
+		\draw (6,2) node[anchor=south] {\(\mu = \probP\circ X^{-1}\)};
 	\end{tikzpicture}
 \end{subfigure}
 \caption{\(X\)的分布的定义}
@@ -400,7 +400,7 @@
 		\item \label{thm:1.2.1.1} \(F\)不减。
 		\item\label{thm:1.2.1.2} \(\lim\limits_{x \rightarrow +\infty} F(x) = 1\)，\(\lim\limits_{x \rightarrow -\infty} F(x) = 0\)。
 		\item\label{thm:1.2.1.3} \(F\)右连续，即\(\lim\limits_{y \rightarrow x^+} F(y) = F(x)\)。
-		\item\label{thm:1.2.1.4} 若\(F(x^-) = \lim\limits_{y\rightarrow x^-}F(y)\)则\(F(x^-) = P(X < x)\)。
+		\item\label{thm:1.2.1.4} 若\(F(x^-) = \lim\limits_{y\rightarrow x^-}F(y)\)则\(F(x^-) = \probP(X < x)\)。
 		\item\label{thm:1.2.1.5} \(P(X=x) = F(x) - F(x^-)\)。
 	\end{enumerate}
 \end{theorem}
@@ -422,21 +422,42 @@
 	如果\(F\)符合\thmref{thm:1.2.1}中的\ref{thm:1.2.1.1}、\ref{thm:1.2.1.2}和\ref{thm:1.2.1.3}，那么它必然是某个随机变量的分布函数。
 \end{theorem}
 \begin{proof}
-	令\(\Omega = \intoo{0,1}, \mathcal{F}=\Omega\)上的博雷尔集构成的集合，然后令\(P=\)勒贝格测度。若\(\omega \in \intoo{0,1}\)，则令
+	令\(\Omega = \intoo{0,1}, \mathcal{F}=\Omega\)上的博雷尔集构成的集合，然后令\(P=\)勒贝格测度。对于\(\omega \in \intoo{0,1}\)，定义
 	\[X(\omega) = \sup\{y:F(y) < \omega\}\]
 	如果我们能证明
 	\[\tag{$\star$}\label{thm:1.2.2.star}\{\omega: X(\omega) < x\} = \{\omega:\omega\leq F(x)\}\]
 	那么我们就可以立即得到想要的结果，因为\(P(\omega:\omega\leq F(x)) = F(x)\)。（因为\(P\)在这里是勒贝格测度。）
-	为了验证(\ref{thm:1.2.2.star})，我们注意到如果\(\omega'leq F(x)\)，那么就有\(X(\omega) \leq x\)，因为\(x \notin \{y: F(y) < \omega\}\)。
+	为了验证(\ref{thm:1.2.2.star})，我们注意到如果\(\omega\leq F(x)\)，那么就有\(X(\omega) \leq x\)，因为\(x \notin \{y: F(y) < \omega\}\)。
 	如果\(\omega > F(x)\)，从\(F\)的右连续性中可以得出，存在\(\epsilon > 0\)使得\(F(x+\epsilon) < \omega\)以及\(X(\omega) \geq x+\epsilon > x\)。
 \end{proof}
+\begin{figure}
+\centering
+\begin{tikzpicture}
+	\draw[->] (-1, 0) -- (9, 0) node[right] {\(X\)};
+	% \draw[->] (0, 0) -- (0, 1.2) node[left] {\(\probP\)};
+
+	\draw[domain=-2:0, variable=\x, thick] plot ({\x}, {0});
+	\draw[domain=0:2, variable=\x, thick] plot ({\x}, {0.5*\x});
+	\draw[domain=2:4, variable=\x, thick] plot ({\x}, {0.5*\x+1});
+	\draw[domain=4:5, variable=\x, thick] plot ({\x}, {3});
+	\draw[domain=5:6, variable=\x, thick] plot ({\x}, {\x-2});
+	\draw[domain=6:8, variable=\x, thick] plot ({\x}, {4});
+	\draw [fill=white] (2,1) circle [radius=1.5pt];
+	\draw [fill=black] (2,2) circle [radius=1.5pt];
+
+
+	\draw [densely dashed] (-1,1.5)node[left]{\(y\)} -- (2,1.5) -- (2,0)node[below]{\(F^{-1}(x)\)};
+	\draw [densely dashed] (-1,3)node[left]{\(y\)} -- (4,3) -- (4,0)node[below]{\(F^{-1}(y)\)};
+\end{tikzpicture}
+\caption{\thmref{thm:1.2.2}的证明中定义的``逆映射''}
+\end{figure}
 
 即便\(F\)不是单射也不是满射（即不是双射），我们还是会称\(X\)为\(F\)的逆，并记为\(F^{-1}\)。
 证明\thmref{thm:1.2.2}所用到的方法被广泛应用于计算机中随机变量的生成。
 首先生成一个具有均匀分布的随机变量\(U\)，然后借助\thmref{thm:1.2.2}中构造的\(F\)来得到一个新的随机变量\(F^{-1}(U)\)，显然其分布函数就是\(F\)。
 
-如果\(X\)和\(Y\)在\((\R,\mathcal{R})\)上诱导除了相同的分布\(\mu\)，我们就称\(X\)和\(Y\)是\term{在分布意义下相等}（equal in distribution）的。
-在\thmref{thm:1.1.4}的观点下，\(X\)和\(Y\)在分布意义下相等当且仅当\(X\)和\(Y\)具有相同的分布，人们通常会记为
+如果\(X\)和\(Y\)在\((\R,\mathcal{R})\)上诱导出了相同的分布\(\mu\)，我们就称\(X\)和\(Y\)是\term{在分布意义下相等}（equal in distribution）的。
+根据\thmref{thm:1.1.4}，\(X\)和\(Y\)在分布意义下相等当且仅当\(X\)和\(Y\)具有相同的分布，人们通常会记为
 \[X \stackrel{d}{=} Y\]
 但是这个记号在本中显得太长了，出于印刷等方面的因素我们会使用记号\(X =_d Y\)。
 
@@ -444,7 +465,7 @@
 \begin{equation}\label{eq:1.2.1}
 	F(x) = \int_{-\infty}^{x}f(y) \dif y
 \end{equation}
-则称\(X\)具有\term{密度函数}（density function）\(f\)。为了方便记忆，我们可以认为\(f(x)\)就``代表''了\(P(X=x)\)，然而实际上却是
+则称\(X\)具有\term{概率密度函数}（probability density function (PDF)）\(f\)。为了便于认知，我们可以认为\(f(x)\)就``代表''了\(P(X=x)\)，尽管在实际上
 \[P(X = x) = \lim\limits_{\epsilon \rightarrow 0}\int_{x-\epsilon}^{x+\epsilon} f(y) \dif y = 0\]
 出于一般性的考量，我们不会使用诸如\(P(X=x)\)的记号来表示密度函数。取而代之的是另一个更具启发意义的记号\(f_X(x)\)。
 
@@ -471,7 +492,7 @@
 	\[f(x) = (2\pi)^{-1/2}\exp(-x^2/2)\]
 \end{example}
 此时\(F\)并没有所谓的闭合式，但是针对比较大的\(x\)，它的分布有如下形式的界：
-\begin{theorem}
+\begin{theorem} \label{thm:1.2.6}
 	对\(x > 0\)
 	\[(x^{-1} - x^{-3})\exp(-x^2/2) \leq \int_{x}^{+\infty} \exp(-y^2/2) \dif y \leq x^{-1}\exp(-x^2/2)\]
 \end{theorem}
@@ -484,8 +505,83 @@
 如果一个\(\R\)上的分布函数具有密度，。有关这些记号的更多内容请参考\secref{sec:a.4}。
 一个奇异分布的例子是：
 \begin{example}[康托尔集上的均匀分布]\label{ex:1.2.7}
-
+我们通过如下方式构造康托尔集\(C\)：去掉\(\intcc{0,1}\)中间的三分之一\(\intoo{1/3,2/3}\)，之后对剩余区间不断重复此过程。
+现在定义与之关联的分布函数\(F(x)\)，当\(x\leq0\)时\(F(x)=0\)，当\(x\geq1\)时\(F(x)=1\)，当\(x\in\intcc{1/3,2/3}\)时\(F(x)=1/2\)，当\(x\in\intcc{1/9,2/9}\)时\(F(x)=1/4\)，当\(x\in\intcc{7/9,8/9}\)时\(F(x)=3/4\)……之后借助单调性将其延拓到整个\(\intcc{0,1}\)上。
+此时不存在\(f\)使得\eqref{eq:1.2.1}成立，因为如果\(f\)存在的话它必须在一个测度为\(1\)的集合上等于\(0\)。根据康托尔集的定义，\(\mu(\intcc{0,1}\backslash C)=0\)。
 \end{example}
+\begin{figure}
+\centering
+\tikzset{
+	if/.code n args=3{\pgfmathparse{#1}\ifnum\pgfmathresult=0
+		\pgfkeysalso{#3}\else\pgfkeysalso{#2}\fi},
+	lower cantor/.initial=.3333, upper cantor/.initial=.6667, y cantor/.initial=.5,
+	declare function={
+		cantor_l(\lowerBound,\upperBound)=
+		(\pgfkeysvalueof{/tikz/lower\space cantor})*(\upperBound-\lowerBound)+\lowerBound;
+		cantor_u(\lowerBound,\upperBound)=
+		(\pgfkeysvalueof{/tikz/upper\space cantor})*(\upperBound-\lowerBound)+\lowerBound;
+		cantor(\lowerBound,\upperBound)=% fun definition
+		(\pgfkeysvalueof{/tikz/y\space cantor})*(\upperBound-\lowerBound)+\lowerBound;},
+	cantor start/.style n args=5{%
+		insert path={(#1,#3)},
+		cantor={#1}{#2}{#3}{#4}{#5}{0},
+		insert path={to[every cantor edge/.try, cantor 1 edge/.try] (#2,#4)}},
+	cantor/.style n args=6{%
+		/utils/exec=%
+		\pgfmathsetmacro\lBx{cantor_l(#1,#2)}%
+		\pgfmathsetmacro\uBx{cantor_u(#1,#2)}%
+		%      \pgfmathsetmacro\y{.5*(#3+#4)},% proper definition
+		\pgfmathsetmacro\y{cantor(#3,#4)},% fun
+		style/.expanded={
+			if={#6<#5}{cantor={#1}{\lBx}{#3}{\y}{#5}{#6+1}}{},
+			insert path={
+				to[every cantor edge/.try, cantor 1 edge/.try] (\lBx,\y)
+				to[every cantor edge/.try, cantor 2 edge/.try] (\uBx,\y)},
+			if={#6<#5}{cantor={\uBx}{#2}{\y}{#4}{#5}{#6+1}}{}}}}
+
+	\begin{tikzpicture}[line join=round]
+		\draw[thick, cantor start={0}{6}{0}{6}{5}{0}];
+		\draw[|-|] (0,0) node[below]{\(0\)} -- (6,0)node[below]{\(1\)};
+	\end{tikzpicture}
+\caption{康托尔分布}
+\end{figure}
+
+\begin{example}[\(0\)处的单点分布]
+	\[F(x)=\begin{cases}
+		1,\quad x\geq0\\
+		0,\quad x<0
+	\end{cases}\]
+\end{example}
+在\secref{sec:1.6}中我们将会介绍伯努利分布、泊松分布以及几何分布。
+下面这个例子中我们会看到，在离散概率测度下分布函数可以长得十分粗犷。
+\begin{example}[具有稠密间断点集的分布]
+	令\(q_1,q_2,\dots\)为有理数的枚举。令\(\alpha_i>0\)满足\(\sum_{i=1}^{+\infty}\alpha_i=1\)，定义
+	\[F(x)=\sum_{i=1}^{+\infty}\alpha_i \indicator_{\intco{q_i,+\infty}}\]
+\end{example}
+\section*{习题}
+\begin{exercise}
+	\item 假如\(X\)和\(Y\)是概率空间\((\Omega,\mathcal{F},\probP)\)上的随机变量。试说明对于给定的\(A\in\mathcal{F}\)函数
+	\[Z(\omega)=\begin{cases}
+		X(\omega),\omega\in A\\
+		Y(\omega),\omega\in A^c
+	\end{cases}\]
+	也是随机变量。
+	\item 令\(\chi\)为服从正态分布的随机变量。利用\thmref{thm:1.2.6}估计\(\probP(\chi\leq4)\)的上界与下界。
+	\item 证明分布函数最多只有至多可数个间断点。
+	\item 证明若\(F(x)=\probP(X\leq x)\)为连续函数，则\(Y=F(X)\)服从\(\intoo{0,1}\)上的均匀分布，即说明若\(y\in\intcc{0,1}\)则\(\probP(Y\leq y)=y\)。
+	\item 假如随机变量\(X\)具有连续的概率密度函数\(f\)，\(P(\alpha\leq X\leq\beta)=1\)并且\(g\)为一严格单调增函数，且在开区间\(\intoo{\alpha,\beta}\)上可微。证明\(g(X)\)有概率密度函数\(h(y)\)
+	\[h(y)=\begin{cases}
+		\frac{f\del{g^{-1}(y)}}{g^\prime\del{g^{-1}(y)}}, y\in\intoo{g(\alpha),g(\beta)}\\
+		0, \text{其他}
+	\end{cases}\]
+	当\(g(x)=ax+b,a>0\)时，我们有\(g^{-1}(y)=(y-b)/a\)，故此时\(h\)在\(y\in\intoo{g(\alpha),g(\beta)}\)上的值为\((1/a)f((y-b)/a)\)。
+	\item 假如\(X\)服从正态分布，根据上一个练习计算\(\exp(X)\)的概率密度函数。（该结果称为\term{对数正态分布}（log-normal distribution））
+	\item \begin{exercise}
+		\item 假如\(X\)的概率密度函数为\(f\)。试计算\(X^2\)的分布函数和概率密度函数。
+		\item 给出当\(X\)服从正态分布时\(X^2\)的概率密度函数，即\term{卡方分布}（\(\chi^2\) distribution）的概率密度函数。
+	\end{exercise}
+\end{exercise}
+
 \section{随机变量} \label{sec:1.3}
 \section{积分} \label{sec:1.4}
 \section{积分的性质} \label{sec:1.5}
