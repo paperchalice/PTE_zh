@@ -3,7 +3,7 @@
 \usepackage{makeidx, imakeidx}
 \usepackage{etoolbox}
 \usepackage{tikz, graphicx, float, subcaption}
-
+\usepackage[nonumberlist]{glossaries}
 \usepackage{hyperref, subfiles} % Best loaded last in the preamble
 
 \newcommand{\term}[1]{\textbf{#1} \index{#1}}
@@ -12,6 +12,8 @@
 \newcommand{\Q}{\ensuremath{\mathbf{Q}}}
 \newcommand{\R}{\ensuremath{\mathbf{R}}}
 \newcommand{\Z}{\ensuremath{\mathbf{Z}}}
+\newcommand{\sequence}[1]{\left<#1\right>}
+\newcommand{\txtas}{\text{a.s.}}
 \DeclareMathOperator*{\bigplus}{\scalerel*{+}{\sum}}
 \DeclareMathOperator{\sgn}{sgn}
 \DeclareMathOperator{\probP}{\mathrm{P}}
@@ -46,7 +48,7 @@
 \newlist{exercise}{enumerate}{3}
 \setlist[exercise,2]{label={(\roman*)}, itemjoin=；}
 \setlist[exercise,3]{label={(\alph*)}}
-\setlist[exercise,1]{label=\textbf{练习\thesection.\arabic*},ref=\bf 练习\thesection.\arabic*}
+\setlist[exercise,1]{label=\textbf{习题\thesection.\arabic*},ref=\bf 习题\thesection.\arabic*}
 
 \renewcommand{\thmref}[1]{定理~\ref{#1}}
 \renewcommand{\exref}[1]{例~\ref{#1}}

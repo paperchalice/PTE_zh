@@ -13,15 +13,26 @@
 \date{}
 \author{（美）里克·达雷特（Rick Durrett）\\赵明毅（译）}
 
-\makeindex
+\input{symtab.tex}
 
+\makeindex
+\makeglossaries
 \begin{document}
 \maketitle
 \tableofcontents
+
 \subfile{chapter/ch1.tex}
 \subfile{chapter/ch2.tex}
 \subfile{chapter/ch3.tex}
+\subfile{chapter/ch4.tex}
+\subfile{chapter/ch5.tex}
+\subfile{chapter/ch6.tex}
+\subfile{chapter/ch7.tex}
+\subfile{chapter/ch8.tex}
+\subfile{chapter/ch9.tex}
 \subfile{chapter/appendix.tex}
 
+\glsaddall
+\printglossary[title=符号表,style=long]
 \printindex
 \end{document}
