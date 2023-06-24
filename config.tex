@@ -1,10 +1,12 @@
-\usepackage{amsmath, amssymb, amsthm, commath, diagbox, xparse, mathtools,scalerel}
+\usepackage{amsmath, amssymb, amsthm, commath, diagbox, xparse, mathtools,scalerel, thmtools}
 \usepackage[inline]{enumitem}
 \usepackage{makeidx, imakeidx}
 \usepackage{etoolbox}
-\usepackage{tikz, graphicx, float, subcaption}
+\usepackage{tikz, graphicx, float, subcaption, pgfplots}
 \usepackage[nonumberlist]{glossaries}
 \usepackage{hyperref, subfiles} % Best loaded last in the preamble
+
+\pgfplotsset{compat=1.18}
 
 \newcommand{\term}[1]{\textbf{#1} \index{#1}}
 \newcommand{\C}{\ensuremath{\mathbf{C}}}
@@ -12,25 +14,24 @@
 \newcommand{\Q}{\ensuremath{\mathbf{Q}}}
 \newcommand{\R}{\ensuremath{\mathbf{R}}}
 \newcommand{\Z}{\ensuremath{\mathbf{Z}}}
-\newcommand{\sequence}[1]{\left<#1\right>}
+\newcommand{\sequence}[2][\ensuremath{+\infty}]{\left<#2\right>^{#1}}
 \newcommand{\txtas}{\text{a.s.}}
 \DeclareMathOperator*{\bigplus}{\scalerel*{+}{\sum}}
 \DeclareMathOperator{\sgn}{sgn}
 \DeclareMathOperator{\probP}{\mathrm{P}}
 \DeclareMathOperator{\E}{E}
+\DeclareMathOperator{\Var}{var}
 \DeclareMathOperator{\indicator}{1}
 \let\oldemptyset\emptyset
 \let\emptyset\varnothing
 
 \setlist[enumerate,1]{label*=(\roman*), itemjoin=。, itemjoin*={；和}}
 
-\newtheorem{theorem}{定理}[section]
-\newtheorem{lemma}[theorem]{引理}
-\newtheorem{definition}[theorem]{定义}
-\theoremstyle{remark}
-\newtheorem*{remark}{注}
-\theoremstyle{plain}
-\newtheorem*{claim}{断言}
+\declaretheorem[name=定理,numberwithin=section,refname=定理]{theorem}
+\declaretheorem[name=引理,numberwithin=section,sibling=theorem]{lemma}
+\declaretheorem[name=定义,numberwithin=sectio,sibling=theorem]{definition}
+\declaretheorem[name=注,numbered=no,style=remark]{remark}
+\declaretheorem[name=断言,numbered=no,style=plain]{claim}
 \AtBeginEnvironment{theorem}{
 	\setlist[enumerate]{label={(\roman*)}, itemjoin=；, itemjoin*={；和}}
 }
@@ -40,8 +41,7 @@
 \AtBeginEnvironment{proof}{
 	\setlist[enumerate]{label={(\roman*)}}
 }
-\theoremstyle{definition}
-\newtheorem{example}[theorem]{例}
+\declaretheorem[name=例,numberwithin=section,sibling=theorem,style=definition]{example}
 
 \numberwithin{equation}{section}
 

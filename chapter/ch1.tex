@@ -36,8 +36,8 @@
 			\item \label{prop:measure:monotone} \textbf{单调性} 如果 \(A \subseteq B\)，那么\(\mu(A) \leq \mu(B)\)。
 			\item \textbf{可数次可加性}\label{thm:1.1.1.2} 如果\(A \in \bigcup_{m=1}^\infty A_m\)，那么\(\mu(A) \leq \sum_{m=1}^\infty\mu(A_m)\)。
 			\item \label{prop:measure:below_continuity} \textbf{下连续性} % TODO: 这个翻译不好
-			 如果集列\(\sequence{A}_{i=1}^{+\infty}\)满足\(\lim\limits_{i\rightarrow+\infty}A_i \stackrel{\uparrow}{=} A\)（即\(A_1 \subseteq A_2 \subseteq \dots\)且 \(\bigcup_i A_i = A\)，那么就有 \(\lim\limits_{i\rightarrow+\infty}\mu(A_i) \stackrel{\uparrow}{=} \mu(A)\)。
-			\item \textbf{上连续性} 如果集列\(\sequence{A}_{i=1}^{+\infty}\)满足\(\lim\limits_{i\rightarrow+\infty}A_i \stackrel{\downarrow}{=} A\)（即\(A_1 \supseteq A_2 \supseteq \dots\)且 \(\bigcap_i A_i = A\)且\(\mu(A_1) < \infty\)，那么就有 \(\lim\limits_{i\rightarrow+\infty}\mu(A_i) \stackrel{\downarrow}{=} \mu(A)\)。
+			 如果集列\(\sequence{A}_{i=1}\)满足\(\lim\limits_{i\uparrow+\infty}A_i \stackrel{\uparrow}{=} A\)（即\(A_1 \subseteq A_2 \subseteq \dots\)且 \(\bigcup_i A_i = A\)，那么就有 \(\lim\limits_{i\rightarrow+\infty}\mu(A_i) \stackrel{\uparrow}{=} \mu(A)\)。
+			\item \textbf{上连续性} 如果集列\(\sequence{A_i}_{i=1}\)满足\(\lim\limits_{i\rightarrow+\infty}A_i \stackrel{\downarrow}{=} A\)（即\(A_1 \supseteq A_2 \supseteq \dots\)且 \(\bigcap_i A_i = A\)且\(\mu(A_1) < \infty\)，那么就有 \(\lim\limits_{i\rightarrow+\infty}\mu(A_i) \stackrel{\downarrow}{=} \mu(A)\)。
 		\end{enumerate}
 	\end{theorem}
 	\begin{proof}
@@ -141,7 +141,7 @@
 	\end{enumerate*}。那么\(\mu\)有唯一的延拓\(\bar{\mu}\)使得其是\(\bar{\mathcal{S}}\)，即由\(\mathcal{S}\)生成的集域，上的测度。
 	如果\(\bar{\mu}\)是\(\sigma\)有限的，那么存在唯一的延拓\(\nu\)，使得\(\nu\)为\(\sigma(\mathcal{S})\)上的测度。
 \end{theorem}
-在\ref{thm:1.1.9.2}及其后面的内容中，我们会用\(i \geq 1\)表示可数并，而单个的\(i\)或\(j\)表示有限并。由于本节内容使用了定理\ref{thm:1.1.9}，因此该定理的证明放在了附录的\ref{sec:a.1}节当中。
+在\ref{thm:1.1.9.2}及其后面的内容中，我们会用\(i \geq 1\)表示可数并，而单个的\(i\)或\(j\)表示有限并。由于本节内容使用了\autoref{thm:1.1.9}，因此该定理的证明放在了附录的\ref{sec:a.1}节当中。
 为了验证定理中的条件\ref{thm:1.1.9.2}成立，用下面的结论会比较方便：
 \begin{lemma} \label{lem:1.1.10}
 	假定只有条件\ref{thm:1.1.9.1}成立。
@@ -256,11 +256,12 @@
 \end{split}\]
 若我们要让\(\mu(A) = \Delta_A F\)，我们必须要假定
 \begin{enumerate}
-	\item[(iv)] \label{def:measure.Rd.4} 对所有的矩形\(A\)，\(\Delta_A F \geq 0\)。
+	\setcounter{enumi}{3}
+	\item \label{def:measure.Rd.4} 对所有的矩形\(A\)，\(\Delta_A F \geq 0\)。
 \end{enumerate}
 
 \begin{theorem} \label{thm:1.1.11}
-	假设\(F:\ \R^d \mapsto \intcc{0,1}\)满足上述条件\ref{def:measure.Rd.1}--\ref{def:measure.Rd.4}。
+	假设\(F:\ \R^d \mapsto \intcc{0,1}\)满足条件\ref{def:measure.Rd.1}--\ref{def:measure.Rd.4}。
 	那么\(\R^d, \mathcal{R}^d\)上存在唯一的测度\(\mu\)，使得对于所有的有限矩形\(A\)，有\(\mu(A) = \Delta_A F\)。
 \end{theorem}
 
@@ -569,7 +570,7 @@
 	\item 令\(\chi\)为服从正态分布的随机变量。利用\thmref{thm:1.2.6}估计\(\probP(\chi\leq4)\)的上界与下界。
 	\item 证明分布函数最多只有至多可数个间断点。
 	\item 证明若\(F(x)=\probP(X\leq x)\)为连续函数，则\(Y=F(X)\)服从\(\intoo{0,1}\)上的均匀分布，即说明若\(y\in\intcc{0,1}\)则\(\probP(Y\leq y)=y\)。
-	\item 假如随机变量\(X\)具有连续的概率密度函数\(f\)，\(P(\alpha\leq X\leq\beta)=1\)并且\(g\)为一严格单调增函数，且在开区间\(\intoo{\alpha,\beta}\)上可微。证明\(g(X)\)有概率密度函数\(h(y)\)
+	\item \label{exe:1.2.5} 假如随机变量\(X\)具有连续的概率密度函数\(f\)，\(P(\alpha\leq X\leq\beta)=1\)并且\(g\)为一严格单调增函数，且在开区间\(\intoo{\alpha,\beta}\)上可微。证明\(g(X)\)有概率密度函数\(h(y)\)
 	\[h(y)=\begin{cases}
 		\frac{f\del{g^{-1}(y)}}{g^\prime\del{g^{-1}(y)}}, y\in\intoo{g(\alpha),g(\beta)}\\
 		0, \text{其他}
@@ -649,13 +650,13 @@
 \end{proof}
 
 \begin{theorem}\label{thm:1.3.7}
-	若\(\sequence{X_i}_{i=1}^{+\infty}\)为随机变量构成的序列，则
+	若\(\sequence{X_i}_{i=1}\)为随机变量构成的序列，则
 	\[\inf_{n\geq1}X_n\quad \sup_{n\geq1}X_n\quad \liminf\limits_{n\rightarrow+\infty} X_n\quad \limsup\limits_{n\rightarrow+\infty} X_n\]
 	均是随机变量。
 \end{theorem}
 \begin{proof}
 	我们知道一个序列的下界小于\(a\)当且仅当序列中的某些项小于\(a\)（如果序列中每一项都大于等于\(a\)则\(a\)就是一个下界）故我们有
-	\[\{\inf_{n\geq1}X_n<a\}=\bigcup_{n\geq1}\{X_n<a\}\in\mathcal{F}\]
+	\[\cbr{\inf_{n\geq1}X_n<a}=\bigcup_{n\geq1}\{X_n<a\}\in\mathcal{F}\]
 	同理，我们还能得到\(\{\inf_{n\geq1}X_n<a\}=\bigcup_{n\geq1}\{X_n<a\}\in\mathcal{F}\)。
 	根据上面两条式子，
 	\begin{align*}
@@ -666,7 +667,7 @@
 
 根据\thmref{thm:1.3.7}，我们可以得出
 \[\Omega_0:=\{\omega: \lim\limits_{n\rightarrow+\infty}X_n\text{存在}\}=\{\omega:\limsup\limits_{n\rightarrow+\infty}X_n-\liminf\limits_{n\rightarrow+\infty}X_n=0\}\]
-是可测集（\(:=\)表示后面的式子为定义）。如果\(\probP(\Omega_0)=1\)，我们就称\(\sequence{X_n}_{n=1}^{+\infty}\)\term{几乎必然收敛}（converges almost surely）或缩写为 a.s.。在测度论中，这种收敛称为\term{几乎处处收敛}（convergence almost everywhere）。
+是可测集（\(:=\)表示后面的式子为定义）。如果\(\probP(\Omega_0)=1\)，我们就称\(\sequence{X_n}_{n=1}\)\term{几乎必然收敛}（converges almost surely）或缩写为 a.s.。在测度论中，这种收敛称为\term{几乎处处收敛}（convergence almost everywhere）。
 为了将极限的概念推广到整个空间上，定义
 \[X_{+\infty}:=\limsup\limits_{n\rightarrow+\infty}X_n\]
 但是这个随机变量的取值可以是\(+\infty\)或\(-\infty\)，故而为了避免不必要的麻烦，我们有必要推广随机变量的定义。
@@ -750,7 +751,7 @@
 		\item \label{lem:1.4.2.4} 若\(\varphi\leq\psi\) a.e. 则\(\int_\Omega\varphi\,\dif\mu\leq\int_\Omega\psi\,\dif\mu\)。
 		\item \label{lem:1.4.2.5} 若\(\varphi=\psi\) a.e. 则\(\int_\Omega\varphi\,\dif\mu=\int_\Omega\psi\,\dif\mu\)。
 
-		另外，如果令\ref{lem:1.4.1.1}中的\(a=-1\)，我们还有
+		另外，如果令\ref{lem:1.4.1.1}中的\(a=-1\)，我们还可以得到
 		\item \label{lem:1.4.2.6} \(\envert{(\int_\Omega\varphi\,\dif\mu}\leq\int_\Omega\envert{\varphi}\,\dif\mu\)
 	\end{enumerate}
 \end{lemma}
@@ -824,7 +825,7 @@
 这个积分是良定义的。下面的结果将会帮助我们计算积分的值。
 
 \begin{lemma}\label{lem:1.4.4}
-	若集列\(\sequence{E_n}_{n=1}^{+\infty}\)满足\(\lim\limits_{n\rightarrow+\infty}E_n\stackrel{\uparrow}{=}\Omega\)且通项\(E_n\)满足\(\mu(E_n)<+\infty\)，并定义\(a\wedge b:=\min(a,b)\)，那么我们有
+	若集列\(\sequence{E_n}_{n=1}\)满足\(\lim\limits_{n\uparrow+\infty}E_n\stackrel{\uparrow}{=}\Omega\)且通项\(E_n\)满足\(\mu(E_n)<+\infty\)，并定义\(a\wedge b:=\min(a,b)\)，那么我们有
 	\[\lim\limits_{n\rightarrow+\infty}\int_{E_n}f\wedge n\,\dif\mu\stackrel{\uparrow}{=}\int_\Omega f\,\dif\mu\]
 \end{lemma}
 \begin{proof}
@@ -933,10 +934,471 @@
 \end{exercise}
 
 \section{积分的性质} \label{sec:1.5}
-\section{数学期望} \label{sec:1.6}
-\begin{theorem}
-\label{thm:1.6.9}
+本节中，我们将探讨\hyperref[sec:1.4]{上一节}所定义的积分的性质。首先，我们给出\thmref{thm:1.4.7}\ref{thm:1.4.7.6}的推广。
+\begin{theorem}[\term{琴生不等式}（Jensen's inequality）]
+	\label{thm:1.5.1}
+	若\(\varphi\)是凸函数，即
+	\[\forall\lambda\in\intoo{0,1},x,y\in\R (\lambda\varphi(x)+(1-\lambda)\leq\varphi(\lambda x+(1-\lambda)y))\]
+	如果\(\mu\)是概率测度，且\(f\)以及\(\varphi\circ f\)可积，则有
+	\[\varphi\del{\int f\,\dif\mu}\leq \int\varphi\circ f\,\dif\mu\]
 \end{theorem}
+\begin{proof}
+	令\(c=\int f\,\dif\mu\)并令\(\ell(x)=ax+b\)为一仿射函数，其满足\(\ell(c)=\varphi(c)\)且\(\varphi(x)\geq\ell(x)\)。
+	函数\(\varphi\)的凸性保证了\(\ell\)的存在，因为
+	\[\lim\limits_{h\downarrow0}\frac{\varphi(c)-\varphi(c-h)}{h}\leq\lim\limits_{h\downarrow0}\frac{\varphi(c+h)-\varphi(c)}{h}\]
+	（这两个极限存在是因为它们都是对单调列的极限。）
+	只要令\(a\)在这两个极限之间，那么\(\ell(x)=a(x-c)+\varphi(c)\)就具有我们期待的性质。在说明完\(\ell\)的存在性后，剩下的内容就简单了。
+	\thmref{thm:1.4.7}的\ref{thm:1.4.7.6}表明
+	\[\int\varphi\circ f\,\dif\mu\geq\int(af+b)\,\dif\mu=a\int f\,\dif\mu+b=\ell\del{\int f\,\dif\mu}=\varphi\del{\int f\,\dif\mu}\]
+	这是因为我们已经定义了\(c=\int f\,\dif\mu\)以及\(\ell(c)=\varphi(c)\)。
+\end{proof}
+
+对于任意的\(0\leq p<+\infty\)，定义\(\enVert{f}_p=\del{\int\envert{f}\,\dif\mu}^{1/p}\)。显然，对任意实数，我们有\(\enVert{cf}_p=\envert{c}\enVert{f}_p\)。
+\begin{theorem}[\term{赫尔德不等式}（H\"{o}lder's inequality）]
+	\label{thm:1.5.2}
+	若\(p,q\in\intoo{1,+\infty}\)满足\(1/p+1/q=1\)，那么
+	\[\int\envert{fg}\,\dif\mu\leq\enVert{f}_p\enVert{g}_q\]
+\end{theorem}
+\begin{proof}
+	如果\(\enVert{f}_p\)或\(\enVert{g}_p\)为\(0\)那么\(\envert{fg}\)几乎处处为零，故我们只需要证明\(\enVert{f}_p\)与\(\enVert{g}_p\)均大于零的情况即可。
+	注意到我们可以对不等式两侧同时除以\(\enVert{f}_p\enVert{g}_q\)，故我们可以不是一般性地认为\(\enVert{f}_p=\enVert{g}_q=1\)。
+	首先固定\(y\geq0\)，并定义
+	\[\varphi(x)=x^p/p+y^q/q-xy, x\geq0\]
+	\[\varphi^\prime(x)=x^{p-1}-x, \varphi^{\prime\prime}(x)=(p-1)x^{p-2}-1\]
+	故\(\varphi\)在\(x_0=y^{1/(p-1)}\)处取得最小值。此时\(q=p/(p-1)\)以及\(x_0^p=y^{p/(p-1)=y^q}\)，故有
+	\[\varphi(x_0)=y^q(1/p+1/q)-y^{1/(p-1)}y=0\]
+	由于\(\varphi\)在\(x_0\)处取得最小值，我们可以立即得出\(xy\leq x^p/p+y^q/q\)。
+	接下来做代换\(\envert{f}=x,\envert{g}=y\)并对不等式两侧积分就有
+	\[\int\envert{fg}\,\dif\mu\leq\frac{1}{p}+\frac{1}{q}=1=\enVert{f}_p\enVert{g}_q\]
+\end{proof}
+\begin{remark}
+	\(p=q=2\)时的情况称为\term{柯西--施瓦茨不等式}（Cauchy-Schwarz inequality）。可以用相对简单一点的手段来证明，对于任意\(\theta\)，注意到
+	\[0\leq\int(f+\theta g)^2\,\dif\mu=\int f^2\,\dif\mu+\theta\del{\int 2fg\,\dif\mu}+\theta^2\del{\int g^2\,\dif\mu}\]
+	故等式右侧的二次方程\(a\theta^2+b\theta+c\)至多只有一个实根。那么其判别式
+	\[b^2-4ac\leq0\]
+	将其展开后就是我们想要的结果。
+\end{remark}
+
+接下来的目标是给出
+\[\lim\limits_{n\rightarrow+\infty}\int f_n\,\dif\mu=\int\del{\lim\limits_{n\rightarrow+\infty}f}\,\dif\mu\]
+成立的条件。
+
+首先我们还是需要一个定义，称\term{\(f_n\)依测度\(\mu\)收敛到\(f\)}，如果对每个\(\epsilon>0\)均有\(\lim\limits_{n\rightarrow+\infty}\mu\del{\cbr{x:\envert{f_n(x)-f(x)}>\epsilon}}=0\)，记作\(f_n\xrightarrow{\mu}f\)。在一个装备有有限测度的测度空间上，这是一个比\(f_n\rightarrow f\) a.e. 弱一些的条件，不过这个稍弱的条件也足够让我们证明下面的定理。
+\begin{theorem}[\term{有界收敛定理}（bounded convergence theorem）]
+	\label{thm:1.5.3}
+	令\(E\)为一测度有限的集合。如果\(f_n\)在\(E^c\)上为\(0\)、\(\envert{f_n(x)}\leq M<+\infty\)且\(f_n\xrightarrow{\mu}f\)，那么我们有
+	\[\int f\,\dif\mu=\lim\limits_{n\rightarrow+\infty}\int f_n\,\dif\mu\]
+\end{theorem}
+\begin{example}\label{ex:1.5.4}
+	考虑实直线\(R\)与博雷尔集族\(\mathcal{R}\)构成的可测空间，加上勒贝格测度\(\lambda\)。
+	函数列\(\sequence{f_n}_{n=1}\)的通项为\(f_n(x)=1/n, x\in\intcc{0,n},f_n(x)=0,x\notin\intcc{0,n}\)。
+	这个例子说明了当\(\mu(E)=+\infty\)时定理是不成立的。
+\end{example}
+\begin{proof}
+	令\(\epsilon>0, G_n=\cbr{x:\envert{f_n(x)-f(x)}<\epsilon}\)以及\(B_n=E-G_n\)。
+	根据\thmref{thm:1.4.7}的\ref{thm:1.4.7.3}和\ref{thm:1.4.7.6}，我们有
+	\[\begin{split}
+		\envert{\int f\,\dif\mu-\int f_n\,\dif\mu}=&\envert{\int(f_n-f)\,\dif\mu}\leq\int\envert{f-f_n}\,\dif\mu\\
+		=&\int_{G_n}\envert{f-f_n}\,\dif\mu+\int_{B_n}\envert{f-f_n}\,\dif\mu\\
+		\leq&\epsilon\mu(E)+2M\mu(B_n)
+	\end{split}\]
+	根据\(f_n\xrightarrow{\mu}f\)我们知道\(\lim\limits_{n\rightarrow+\infty}\mu(B_n)=0\)。现在，根据\(\mu(E)\)有限以及\(\epsilon\)的任意性，便可得出结论。
+\end{proof}
+
+\begin{theorem}[\term{法图引理}（Fatou's lemma）]
+	\label{thm:1.5.5}
+	若函数列\(\sequence{f_n}_{n=1}\)的通项\(f_n\)均非负，则有
+	\[\liminf_{n\rightarrow+\infty}\int f_n\,\dif\mu\geq\int\del{\liminf_{n\rightarrow+\infty}f_n}\,\dif\mu\]
+\end{theorem}
+\begin{example}
+	\exref{ex:1.5.4}说明了在有些情况下可以将\thmref{thm:1.5.5}中的\(\geq\)换成\(>\)。
+	考虑定义在\(\intoo{0,1}\)上的函数列\(\sequence{f_n}_{n=1}\)，其通项为\(f_n=n\indicator_{\intoc{0,1/n}}\)，并搭配\(\intoo{0,1}\)上的博雷尔集族以及勒贝格测度，我们发现该定理在有限测度空间上依然成立。
+\end{example}
+\begin{proof}
+	定义\(g_n(x)=\inf_{m\geq n}f_n(x)\)。从而\(f_n(x)\leq g_n(x)\)并且还有
+	\[\lim\limits_{n\uparrow+\infty} g_n(x)\stackrel{\uparrow}{=}g(x)=\liminf_{n\rightarrow+\infty}f_n(x)\]
+	由于\(\int f_n\,\dif\mu\geq\int g_n\,\dif\mu\)，故只要说明
+	\[\liminf_{n\rightarrow+\infty}\int g_n\,\dif\mu\geq\int g\,\dif\mu\]
+	便足矣。
+	令集列\(\sequence{E_m}_{m=1}\)满足\(\lim\limits_{m\uparrow+\infty}E_m\stackrel{\uparrow}{=}\Omega\)且对于通项\(E_m\)均有\(\mu(E_m)<+\infty\)。
+	那么对于固定的\(m\)，根据\(g_n\geq0\)我们有
+	\[(g_n\wedge m)\cdot\indicator_{E_m}\xrightarrow{\text{a.e.}}(g\wedge m)\cdot\indicator_{E_m}\]
+	那么根据\thmref{thm:1.5.3}，有界收敛定理，这意味着
+	\[\liminf_{n\rightarrow+\infty}\int g_n\,\dif\mu\geq\int_{E_m}(g_n\wedge m)\,\dif\mu\xrightarrow{\text{a.e.}}\int_{E_m}(g\wedge m)\,\dif\mu\]
+	接下来对下标\(m\)取上界并使用\lemref{lem:1.4.4}便可得到结果。
+\end{proof}
+
+\begin{theorem}[\term{单调收敛定理}（Monotone convergence theorem）]
+\label{thm:1.5.7}
+若函数列\(\sequence{f_n}_{n=1}\)的通项\(f_n\geq0\)且有\(\lim\limits_{n\uparrow+\infty}f_n=f\)则有
+\[\lim\limits_{n\uparrow+\infty}f_n\,\dif\mu\stackrel{\uparrow}{=}\int f\,\mu\]
+\end{theorem}
+\begin{proof}
+	根据\thmref{thm:1.5.5}法图引理，我们有\(\liminf\limits_{n\uparrow+\infty}f_n\,\dif\mu\geq\int f\,\dif\mu\)，另一方面\(f_n\leq f\)意味着\(\limsup\limits_{n\uparrow+\infty}f_n\,\dif\mu\leq\int f\,\dif\mu\)
+\end{proof}
+
+\begin{theorem}[\term{勒贝格控制收敛定理}（Dominated convergence theorem）]
+	\label{thm:1.5.8}
+	若函数列\(\sequence{f_n}_{n=1}\)满足\(f_n\xrightarrow{\text{a.e.}}f\)且存在可积函数\(g\)使得对任意的\(n\geq1\)有\(\envert{f_n}\leq g\)，则\(\int f_n\,\dif\mu=\int f\,\dif\mu\)。
+\end{theorem}
+\begin{proof}
+	注意到\(f_n+g\geq0\)故由\hyperref[thm:1.5.5]{法图引理}得
+	\[\liminf_{n\rightarrow+\infty}\int f_n+g\,\dif\mu\geq\int f+g\,\dif\mu\]
+	两侧同时减去\(\int g\,\dif\mu\)便有
+	\[\liminf_{n\rightarrow+\infty}\int f_n\,\dif\mu\geq\int f\,\dif\mu\]
+	针对\(-f_n\)重复上面的步骤，会得到
+	\[\limsup_{n\rightarrow+\infty}\int f_n\,\dif\mu\leq\int f\,\dif\mu\]
+	证毕。
+\end{proof}
+
+\subsection*{习题}
+\begin{exercise}
+	\item 定义\(\enVert{f}_{+\infty}=\inf\cbr{M:\mu\del{\cbr{x:\envert{f(x)}>M}}=0}\)。证明
+	\[\int\envert{fg}\,\dif\mu\leq\int\enVert{f}_1\enVert{g}_{+\infty}\]
+	\item 证明若\(\mu\)为概率测度则
+	\[\enVert{f}_{+\infty}=\lim\limits_{p\rightarrow+\infty}\enVert{f}_p\]。
+	\item \term{闵可夫斯基不等式}（Minkowski’s inequality）
+	\begin{exercise}
+		\item 设\(p\in\intoo{1,+\infty}\)。根据不等式\(\envert{f+g}^p\leq2^p\del{\envert{f}^p+\envert{g}^p}\)证明若\(\envert{f}_p\)与\(\enVert{g}_p\)均有限，则\(\enVert{f+g}_p\)亦有限。
+		 对\(\envert{f}\envert{f+g}^{p-1}\)以及\(\envert{g}\envert{f+g}^{p-1}\)应用\hyperref[thm:1.5.2]{赫尔德不等式}证明\(\enVert{f+g}_p\leq\enVert{f}_p+\enVert{g}_p\)。
+		\item 证明上述不等式在\(p=1\)或\(p=+\infty\)时依然成立。
+	\end{exercise}
+	\item\label{exe:1.5.4} 若\(f\)可积且集列\(\sequence{E_m}_{m=1}\)中的元素互不相交且\(\bigcup_{m=0}^{+\infty} E_m=E\)，证明
+	\[\sum_{m=0}^{+\infty}\int_{E_m}f\,\dif\mu=\int_Ef\,\dif\mu\]
+	由此可知若\(f\geq0\)，则\(\nu(E)=\int_{E}f\,\dif\mu\)是一个测度。
+	\item 若函数列\(\sequence{g_n}_{n=1}\)满足\(\lim\limits_{n\uparrow+\infty}g_n\stackrel{\uparrow}{=}g\)且\(\int g_1^-\,\dif\mu<+\infty\)，则
+	\[\lim\limits_{n\uparrow+\infty}\int g_n\,\dif\mu\stackrel{\uparrow}{=}\int g\,\dif\mu\]
+	\item 若函数列\(\sequence{g_m}_{m=1}\)的通项\(g_m\)均非负，则\[\int\sum_{m=1}^\infty g_m\,\dif\mu=\sum_{m=1}^\infty g_m\,\dif\mu\]
+	\item 令函数\(f\)非负。
+	\begin{exercise}
+		\item \label{exe:1.5.7.1}证明\(\lim\limits_{n\uparrow+\infty}\int f\wedge n\,\dif\mu\stackrel{\uparrow}{=}\int f\,\dif\mu\)。
+		\item 根据\ref{exe:1.5.7.1}证明若\(g\)可积且给定\(\epsilon>0\)，存在\(\delta>0\)使得：若集合\(A\)满足\(\mu(A)<\delta\)则有\(\int_A\envert{g}\,\dif\mu<\epsilon\)。
+	\end{exercise}
+	\item 证明若\(f\)在闭区间\(\intcc{a,b}\)上可积则\(\int_{\intcc{a,x}}f(y)\,\dif y\)在开区间\(\intoo{a,b}\)上连续。
+	\item 证明若\(f\)满足\(\enVert{f}_p<+\infty\)则存在简单函数列\(\sequence{\varphi_n}_{n=1}\)使得
+	\[\lim\limits_{n\rightarrow+\infty}\enVert{f-\varphi_n}_p=0\]
+	\item 证明若函数列\(\sequence{f_n}_{n=1}\)满足\(\sum_{n=1}^{+\infty}\int\envert{f_n}\,\dif\mu\)，则
+	\[\sum_{n=1}^{+\infty}\int f_n\,\dif\mu=\int\sum_{n=1}^{+\infty}f_n\,\dif\mu\]
+\end{exercise}
+
+\section{数学期望} \label{sec:1.6}
+现在我们将目光放到测度为概率测度\(\probP\)时的情况。若\(X\)是概率空间\((\Omega,\mathcal{F},\probP)\)上的非负随机变量。定义\(X\)的\term{期望}为\(\E X=\int X\,\dif\probP\)，在允许其取值为\(+\infty\)的情况下它总是有意义的。为了将一般情况简化为非负的特殊情况，只需定义\(X^+=\max\{X,0\}\)为其\textbf{正部}，以及\(X^-=\max\{-X,0\}\)为其\textbf{负部}。
+定义\(\E X=\E X^+-\E X^-\)，只要\(\E X^+\)或\(\E X^-\)的任意一方有限则称期望\textbf{存在}。
+
+有时会称\(\E X\)为\(X\)的\term{均值}（mean）并用\(\mu\)来表示。由于\(\E X\)是通过对\(X\)进行积分定义的，故其拥有所有积分的性质。根据\lemref{lem:1.4.5}和\thmref{thm:1.4.7}我们知道对于任意实数\(b\)，\(\E b=b\)，同时还有如下结论：
+\begin{theorem}
+	\label{thm:1.6.1}
+	设\(X,Y\geq0\)或\(\E\envert{X},\E\envert{Y}\)均有限。
+
+	\begin{enumerate}[label=(\alph*)]
+		\item \(\E(X+Y)=\E X+\E Y\)。
+		\item \label{thm:1.6.1.2}\(\E(aX+b)=a\E X+b\)对任意实数\(a,b\)均成立。
+		\item \label{thm:1.6.1.3} 若\(X\geq Y\)则\(\E X\geq \E Y\)。
+	\end{enumerate}
+\end{theorem}
+本节中，我们会用与期望相关的术语对上一节的内容重新叙述，并引入一些新的内容。
+本节内容会分成三个小节。
+
+\subsection{不等式}
+对于概率测度，\thmref{thm:1.5.1}则变为
+\begin{theorem}[\textbf{琴生不等式}]
+	\label{thm:1.6.2}
+	设\(\varphi\)为\term{凸函数}，即
+	\[\forall\lambda\in\intoo{0,1},\lambda\varphi(x)+(1-\lambda)\varphi(y)\geq\varphi(\lambda x+(1-\lambda)y)\]
+	对任意\(x,y\in\R\)均成立，则
+	\[\E\varphi(X)\geq\varphi(\E X)\]
+	在不等式两端的值存在时成立，即在\(\E\envert{X}\)与\(\E\envert{\varphi(X)}\)均有限时成立。
+\end{theorem}
+下面说一下记忆技巧，注意到若\(\probP(X=x)=\lambda\)且\(\probP(X=y)=1-\lambda\)，则有
+\[\E\varphi(X)=\lambda\varphi(x)+(1-\lambda)\varphi(y)\geq\varphi(\lambda x+(1-\lambda)y)=\varphi(\E X)\]
+两个常用的特殊情况为\(\envert{\E X}\leq\E\envert{X}\)与\((\E X)^2\leq\E(x^2)\)。
+\begin{figure}
+	\centering
+	\begin{tikzpicture}
+		\begin{axis} [
+				axis lines = left,
+			]
+			\addplot [
+				domain=0:3.5,
+				samples=100,
+			] {x^2 - 3*x + 3};
+
+			\addplot [
+				domain=1:3,
+				samples=100,
+			] {x};
+			\node[label={90:{\(g(\E X)\)}},circle,fill,inner sep=2pt] at (axis cs:2,1) {};
+			\node[label={90:{\(\E g(X)\)}},circle,fill,inner sep=2pt] at (axis cs:2,2) {};
+		\end{axis}
+	\end{tikzpicture}
+	\caption{琴生不等式在\(g(x)=x^2-3x+3, \probP(X=1)=\probP(X=3)=1/2\)时的情况}
+\end{figure}
+
+\begin{theorem}[\textbf{赫尔德不等式（H\"older's inequality）}]
+	\label{thm:1.6.3}
+	若\(p,q\in\intcc{1,+\infty}\)满足\(1/p+1/q=1\)，则
+	\[\E\envert{XY}\leq\enVert{X}_p\enVert{Y}_q\]
+	\(\enVert{X}_r:=\del{\E \envert{X}^r}^{1/r}, r\in\intco{1,+\infty}\)，\(\enVert{X}_{+\infty}:=\inf\cbr{M:\probP\del{\envert{X}>M}=0}\)
+\end{theorem}
+
+在开始介绍下一个定理前，我们先引入一个记号，如果我们仅在某个\(A\subseteq \Omega\)上积分时，记作
+\[\E(X;A):=\int_AX\,\dif\probP\]
+\begin{theorem}[\term{切比雪夫不等式}（Chebyshev's inequality）] \label{thm:1.6.4}
+	设函数\(\varphi:\R\mapsto\R\)非负，令\(A\in\mathcal{R}\)以及\(i_A=\inf\cbr{\varphi(y):y\in A}\)，则有
+	\[i_A\probP(X\in A)\leq\E(\varphi(X);X\in A)\leq\E\varphi(X)\]
+\end{theorem}
+\begin{proof}
+	根据\(i_A\)的定义\(\varphi\)非负的条件，我们很容易得知
+	\[i_A\indicator_{(A\in X)}\leq\varphi(X)\indicator_{(X\in A)}\leq\varphi(X)\]
+	接着对上面的不等式求积分并根据\thmref{thm:1.6.1}的\ref{thm:1.6.1.3}即可。
+\end{proof}
+\begin{remark}
+	有些作者称该不等式为\term{马尔科夫不等式}（Markov's inequality）并用切比雪夫不等式来称呼\(\varphi(x)=x^2\)且\(A=\cbr{x:\envert{x}\geq a}\)的情形：
+	\begin{equation}
+		a^2P(\envert{X}\geq a)\leq \E X^2
+	\end{equation}
+\end{remark}
+
+\subsection{对极限积分}
+下面我们将用期望的语言重新叙述之前的关于极限与积分何时能换序的相关内容。
+\begin{theorem}[法图引理(Fatou's lemma)]
+若随机变量列\(\sequence{X_n}_{n=1}\)中的通项\(X_n\geq0\)则
+\[\liminf_{n\rightarrow+\infty}\E X_n\geq\E\del{\liminf_{n\rightarrow+\infty}X_n}\]
+\end{theorem}
+\begin{theorem}[单调收敛定理(Monotone convergence theorem)]
+	若随机变量列\(\sequence{X_n}_{n=1}\)中的通项\(X_n\geq0\)且\(\lim\limits_{n\uparrow+\infty}X_n\stackrel{\uparrow}{=}X\)，则\(\lim\limits_{n\uparrow+\infty}\E X_n\stackrel{\uparrow}{=}\E X\)。
+\end{theorem}
+\begin{theorem}[控制收敛定理(Dominated convergence theorem)]\label{thm:1.6.7}
+	若随机变量列\(\sequence{X_n}_{n=1}\)满足\(X_n\xrightarrow{\text{a.s.}}X\)且通项均满足\(\envert{X_n}\leq Y\)且有\(\E Y<+\infty\)，则\(\lim\limits_{n\rightarrow+\infty}\E X_n=\E X\)
+\end{theorem}
+\thmref{thm:1.6.7}中\(Y\)为常数的情形称为\textbf{有界收敛定理}。
+
+随着学习的深入，我们需要推导一些其他关于极限与积分的性质，其中比较重要的情形有\(g(x)=\envert{x}^p,p>1\)和\(h(x)=x\)。
+\begin{theorem}\label{thm:1.6.8}
+	随机变量列\(\sequence{X_n}_{n=1}\)满足\(X_n\xrightarrow{\text{a.s.}}X\)。令连续函数\(g\)以及\(h\)满足：
+
+	\begin{enumerate}
+		\item \(g\geq0\)，且\(\lim\limits_{\envert{x}\rightarrow+\infty}g(x)=+\infty\)。
+		\item \(\lim\limits_{\envert{x}\rightarrow+\infty}\envert{h(x)}/g(x)=0\)
+		\item \label{thm:1.6.8.3} 通项\(X_n\)满足\(\E g(X_n)\leq K<+\infty\)
+	\end{enumerate}
+	则\(\lim\limits_{n\rightarrow+\infty}\E h(X_n)=\E h(X)\)。
+\end{theorem}
+\begin{proof}
+由于将\(h\)减去一常数不改变积分的收敛性，我们可以不失一般性地认为\(h(0)=0\)。选取一足够大的\(M\)使得只要\(\envert{x}\geq M\)就有\(P\del{\envert{X}=M}=0\)以及\(g(x)>0\)成立。
+对任意随机变量\(Y\)，定义\(\bar{Y}:=Y1_{\envert{Y}\leq M}\)。
+那么从\(P\del{\envert{X}=M}=0\)我们可以得到\(\bar{X}_n\xrightarrow{\text{a.s.}}\bar{X}\)。由于\(h(\bar{X}_n)\)有界且\(h\)连续，那么根据\hyperref[thm:1.6.7]{有界收敛定理}就有
+\label{eq:1.6.7(a)}
+\begin{flalign*}
+\text{(a)}&&\lim\limits_{n\rightarrow+\infty}\E(h(\bar{X}_n))&=\E(h(\bar{X}))&
+\end{flalign*}
+接下来控制``截断''带来的影响，根据：
+\label{eq:1.6.7(b)}
+\begin{flalign*}
+\text{(b)}&&\envert{\E h(\bar{Y}) - \E h(Y)}\leq\E\envert{h(\bar{Y})-h(Y)}\leq\E(\envert{h(Y)};\envert{Y}>M)\leq\epsilon_M\E g(Y)&&
+\end{flalign*}
+其中\(\epsilon_M=\sup\cbr{\envert{h(x)}/g(x):\envert{x}\geq M}\)。第二个不等号成立是因为当\(\envert{Y}\leq M\)时\(\bar{Y}=Y\)，并且我们还假定了\(h(0)=0\)。第三个不等号可以直接从\(\epsilon_M\)的定义得到。
+
+令\hyperref[eq:1.6.7(b)]{(b)}中的\(Y=X_n\)并利用条件\ref{thm:1.6.8.3}便可得到
+\label{eq:1.6.7(c)}
+\begin{flalign*}
+	\text{(c)}&&\envert{\E h(\bar{X}_n)-\E h(X_n)}&\leq K\epsilon_M&
+\end{flalign*}
+为了估计\(\envert{\E h(\bar{X})-\E h(X)}\)，我们观察到\(g\)是非负连续的，因此根据\hyperref[thm:1.5.5]{法图引理}我们有
+\[\E g(x)\leq\liminf_{n\rightarrow+\infty}\E g(X_n)\leq K\]
+再令\hyperref[eq:1.6.7(b)]{(b)}中的\(Y=X\)便有
+\label{eq:1.6.7(d)}
+\begin{flalign*}
+	\text{(d)}&&\envert{\E h(\bar{X})-\E h(X)}&\leq K\epsilon_M&
+\end{flalign*}
+利用三角不等式可以得到
+\begin{multline*}
+\envert{\E h(X_n) - \E h(X)} \leq \envert{\E h(X_n)-\E h(\bar{X}_n)}\\
++\envert{h(\bar{X}_n) - \E h(\bar{X})} + \envert{\E h(\bar{X}) - \E h(X)}
+\end{multline*}
+对上式取极限再利用\hyperref[eq:1.6.7(b)]{(a)}、\hyperref[eq:1.6.7(b)]{(c)}及\hyperref[eq:1.6.7(b)]{(d)}便有
+\[\limsup_{n\rightarrow+\infty}\envert{\E h(X_n) - \E h(X)}\leq 2K\epsilon_M\]
+然而我们有\(0\leq K<+\infty\)且\(\lim\limits_{M\rightarrow+\infty}\epsilon_M=0\)。
+\end{proof}
+
+\subsection{期望的计算}
+尽管\((\Omega, \mathcal{F}, \probP)\)上的积分理论十分优雅，但是在实际应用的过程中我们还是希望将目光转移到能做微积分的空间上。因此在接下来的定理中\(S\)通常是\(\R^d\)
+
+\begin{theorem}[换元公式]
+\label{thm:1.6.9}
+设\(X\)是\((S,\mathcal{S})\)上的随机元素，其分布为\(\mu\)，即\(\mu(A) = \probP(X\in A)\)。
+若\(f\)为从\((S,\mathcal{S})\)到\(\R, \mathcal{R}\)的可测函数，并满足\(f\geq0\)或\(\E\envert{f(X)}<+\infty\)，则
+\[\E f(X)=\int_Sf(y)\,\mu(\dif y)\]
+\end{theorem}
+\begin{remark}
+至于为何称为换元公式，
+记\(X\)为\(h\)，那么\(\mu\)可以改写为\(\probP\circ h^{-1}\)
+\[\int_{\Omega}f(h(\omega))\,\dif\probP=\int_Sf(y)\,\dif \,(\probP\circ h^{-1})\]
+\end{remark}
+\begin{proof}
+为了证明该结果，我们考虑模仿\ref{sec:1.4}中积分的定义，将结果逐步推广到一般的可测函数上。读者应当对该方法引起重视，因为该方法会出现在后续章节的证明中。
+
+\noindent\textit{情况一：指示函数.} 若\(B\in\mathcal{S}\)且\(f=\indicator_B\)，利用积分的定义，则有
+\[\E\indicator_B(X)=\probP(X\in B)=\mu(B)=\int_S\indicator_B(y)\mu(\dif y)\]
+
+\noindent\textit{情况二：简单函数.}令\(f(x)=\sum_{m=1}^nc_m\indicator_{B_m}(x)\)，其中\(c_m\in\R, B_m\in\mathcal{S}\)。根据期望的线性性、情况一的结果以及积分的线性我们可以得到
+\[\begin{split}
+	\E f(X)=&\sum_{m=1}^nc_m\E \indicator_{B_m}(X)\\
+	=&\sum_{m=1}^nc_m\int_S \indicator_{B_m}(y)\mu(\dif y)=\int_Sf(y)\mu(\dif y)
+\end{split}\]
+
+\noindent\textit{情况三：非负函数.}若\(f\geq0\)，定义
+\[f_n(x)=([2^nf(x)]/2^n)\wedge n\]
+其中\([x]\)为\hyperlink{https://zh.wikipedia.org/zh-hans/取整函数}{取整函数}，\(a\wedge b=\min\cbr{a,b}\)，那么容易验证\(f_n\)是简单函数，而且\(\lim\limits_{n\uparrow+\infty}f_n \stackrel{\uparrow}{=} f\)。根据上一情况的结论并结合\hyperref[thm:1.5.5]{单调收敛定理}便有
+\[\E f(X)=\lim_{n\rightarrow+\infty}\E f_n(X)=\lim_{n\rightarrow+\infty}\int_Sf_n(y)\mu(\dif y)
+=\int_Sf(y)\mu(\dif y)\]
+
+\noindent\textit{情况四：可积函数.}至于该情况，只需要把\(f\)写成\(f(x)=f(x)^+-f(x)^-\)即可。\(\E\envert{f(X)}<+\infty\)保证了\(\E f(X)^+\)和\(\E f(X)^-\)均有限。因此利用在非负函数情况下得到的结论配合积分的线性性便可得到
+\[\begin{split}
+	\E f(X)=\E f(X)^+ - \E f(X)^-=&\int_S f(y)^+\mu(\dif y)-\int_S f(y)^-\mu(\dif y)\\
+	=&\int_S f(y)\mu(\dif y)
+\end{split}\]
+四种情况均已验证，证毕。
+\end{proof}
+有了\ref{thm:1.6.9}后，我们就可以将随机变量期望的计算问题转变为实直线上的积分问题。在展示例子前，先介绍一些术语。若\(k\)为一正整数，称\(\E X^k\)为\(X\)的\term{\(k\)-阶矩}，我们通常称一阶矩\(\E X\)为\term{均值}并记作\(\mu\)。如果\(\E X^2<+\infty\)，那么定义\(X\)的\term{方差}为\(\Var(X)=\E(X-\mu)^2\)。
+通常公式
+\begin{equation}\begin{split}
+	\Var(X)=&\E(X-\mu)^2\\
+	=&\E X^2-2\mu\E X+\mu^2=\E X^2-\mu^2
+\end{split}\end{equation}
+可以起到简化计算的作用。
+从上式我们可以立即得出
+\begin{equation}
+	\Var(X)\leq \E X^2
+\end{equation}
+这里\(\E X^2\)表示\(X^2\)的期望。为了不引起混淆我们会把\(\E X\)的平方记作\((\E X)^2\)。
+利用\hyperref[thm:1.6.1.2]{定理1.6.1(b)}可知\(\E(aX+b)=a\E X + b\)，然后根据方差的定义我们可以立刻得到
+\begin{equation} \label{eq:1.6.4}
+\begin{split}
+	\Var(aX+b)=&\E(aX+b-\E(aX+b))^2\\
+	=&a^2\E(X-\E X)^2=a^2\Var(X)
+\end{split}
+\end{equation}
+现在我们可以将目光放到一些例子上了，前两个例子中的计算细节由读者自行完成（用分部积分法）。
+\begin{example}
+若\(X\)服从率参数为\(1\)的\term{指数分布（exponential distribution）}则其\(k\)-阶矩为
+\[\E X^k=\int_0^{+\infty}x^ke^{-x}\dif x=k!\]
+所以\(X\)得均值是\(1!=1\)，方差是\(\E X^2-(\E X)^2=2!-1^2=1\)。如果令\(Y=X/\lambda\)，利用\ref{exe:1.2.5}就可以知道\(Y\)的指数分布的概率密度函数为\(\lambda e^{-\lambda y},y\geq0\)即率参数为\(\lambda\)的\term{指数密度（exponential density）}。
+再利用\autoref{thm:1.6.1}\ref{thm:1.6.1.2}和(\ref{eq:1.6.4})，便可知\(Y\)的均值为\(1/\lambda\)，方差为\(1/\lambda^2\)。
+\end{example}
+\begin{example}
+若\(X\)服从\term{标准正态分布}，根据对称性可知
+\[\E X=\int_{\R}x\frac{1}{\sqrt{2\pi}}e^{-\frac{x^2}{2}}=0\]
+\[\Var(X)=\E X^2=\int_{\R}x^2\frac{1}{\sqrt{2\pi}}e^{-\frac{x^2}{2}}=1\]
+如果令\(\sigma>0,\mu\in\R\)，做换元\(Y=\sigma X+\mu\)再利用\autoref{thm:1.6.1}\ref{thm:1.6.1.2}和(\ref{eq:1.6.4})，便可知\(Y\)的概率密度为
+\[\frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{(y-\mu)^2}{2}}\]
+即均值为\(\mu\)，方差为\(\sigma^2\)的\term{正态分布}。
+\end{example}
+接下来我们将考虑一些离散分布。其中第一种是最为简单的，但在后文中起到了不少作用，故首先介绍。
+\begin{example}
+	称\(X\)服从参数为\(p\)的\term{伯努利分布（Bernoulli distribution）}，若\(P(X=1)=p\)且\(P(X=0)=1-p\)。
+	显然，
+	\[\E X=p\cdot 1+(1-p)\cdot 0=p\]
+	由于\(X^2=X\)，故\(\E X^2=\E X=p\)所以
+	\[\Var(X)=\E X^2-(\E X)^2=p-p^2=p(1-p)\]
+\end{example}
+\begin{example}
+	称\(X\)服从强度为\(\lambda\)的\term{泊松分布（Poisson distribution）}，若对非负整数\(k\)有
+	\[P(X=k)=e^{-\lambda}\lambda^k/k!\]
+	为了求出\(X\)的矩，我们只需``注意到''
+	对\(k\geq1\)有
+	\[\begin{split}
+		\E(X(X-1)\cdots(X-k+1))=&\sum_{j=k}^{+\infty}j(j-1)\cdots(j-k+1)e^{-\lambda}\frac{\lambda^j}{j!}\\
+		=&\lambda^k\sum_{j=k}^{+\infty}e^{-\lambda}\frac{\lambda^{j-k}}{(j-k)!}=\lambda^k
+	\end{split}\]
+	该等式之所以成立是因为
+	\begin{enumerate*}
+		\item \(j(j-1)\cdots(j-k+1)\)在\(j<k\)时为0
+		\item 消去了部分阶乘中的因子
+		\item 泊松分布的总质量为\(1\)
+	\end{enumerate*}
+	因此根据上述式子，我们有\(\E X=\lambda\)同时
+	\[\Var(X)=\E X^2-(\E X)^2=\E(X(X-1))+\E X-\lambda^2=\lambda\]
+\end{example}
+\begin{example}
+	称\(N\)服从成功率为\(p\intoo{0,1}\)的几何分布，若对正整数\(k\)
+	\[P(N=k)=p(1-p)^{k-1}\]
+	所以\(N\)做独立且重复的试验，直到观测到事件成功的试验次数。
+	注意到
+	\[\sum_{k=1}^{+\infty}p(1-p)^{k-1}=1\Rightarrow\sum_{k=0}^{+\infty}(1-p)^{k}=1/p\]
+\end{example}
+对其取微分并借助\ref{exp:a.5.6}可知
+\[-\sum_{k=1}^{+\infty}k(1-p)^{k-1}=-1/p^2\]
+\[\sum_{k=2}^{+\infty}k(k-1)(1-p)^{k-2}=2/p^3\]
+由此可知
+\[\E N=\sum_{k=1}^{+\infty}kp(1-p)^{k-1}=1/p\]
+\[\E N(N-1)=\sum_{k=1}^{+\infty}k(k-1)p(1-p)^{k-1}=2(1-p)/p^2\]
+\[\begin{split}
+	\Var(N)=&\E N^2-(\E N)^2=\E N(N-1)+\E N-(\E N)^2\\
+	=&\frac{2(1-p)}{p^2}+\frac{p}{p^2}-\frac{1}{p^2}
+	=\frac{1-p}{p^2}
+\end{split}\]
+\section*{习题}
+\begin{exercise}
+\item 设\(\varphi\)严格凸，即\(>\)对任意\(\lambda\in\intoo{0,1}\)成立。证明在\ref{thm:1.6.2}的假设下，\(\varphi(\E X)=\E\varphi(X)\)蕴含\(X=\E X\) a.s.
+\item 设\(\varphi:\R^n\mapsto\R\)凸，通过模仿\ref{thm:1.5.1}的证明来说明若\(\E\envert{\varphi(X_1,\dots,X_n)}<+\infty\)且\(\E\envert{X_i}<+\infty\)对所有\(i\)均成立，则
+\[\E\varphi(X_1,\dots,X_n)\geq\varphi(\E X_1,\dots,\E X_n)\]
+\item \textbf{切比雪夫不等式的改进空间}
+(i)通过证明：如果对于固定的\(0<b\leq a\)，存在\(X\)使得\(\E X^2=b^2\)且有\(\probP(\envert{X}\geq a)=b^2/a^2\)。来证明此时\autoref{thm:1.6.4}不存在改进空间
+(ii)通过证明：如果\(X\)满足\(0<\E X^2<+\infty\)，则
+\[\lim\limits_{a\rightarrow+\infty}a^2\probP(\envert{X}\geq a)/\E X^2=0\]
+来证明此时\ref{thm:1.6.4}给出的界存在改进空间。
+
+\item \textbf{切比雪夫不等式的单边界}
+(i) 给定\(a>b>0,0<p<1\)，并令随机变量\(X\)满足\(\probP(X=a)=p,\probP(X=b)=1-p\)，在\autoref{thm:1.6.4}中令\(\varphi(x)=(x+b)^2\)来说明对任意满足\(\E Y=\E X, \Var(Y)=\Var(X)\)的r.v.\(Y\)均有\(\probP(Y\geq a)\leq p\)且在\(Y=X\)时取到等号。
+(ii) 设\(\E Y=0,\Var(Y)=\sigma^2,a>0\)。证明\(\probP(Y\geq a)\leq \sigma^2/(a^2+\sigma^2)\)，且存在\(Y\)使得等号成立。
+\item \textbf{两个不存在的下界}\\
+证明：(i) 若\(\epsilon>0\)则\(\inf\cbr{\probP(\envert{X}>\epsilon):\E X=0,\Var(X)=1}=0\)。
+(ii)若\(y\geq1, \sigma^2\intoo{0,+\infty}\)，则\(\inf\cbr{\probP(\envert{X}>y):\E X=0,\Var(X)=\sigma^2}=0\)。
+\item \textbf{一个常用下界}令r.v.\(Y\)满足\(\E Y=0,\E Y^2<+\infty\)。对\(Y\indicator_{Y>0}\)使用\hyperref[thm:1.5.2]{柯西--施瓦茨不等式}导出
+\[\probP(Y>0)\geq (\E Y)^2/\E Y^2\]
+\item 令\(\Omega=\intoo{0,1}\)，并配备其上的博雷尔集以及勒贝格测度构成测度空间。令\(\alpha\in\intoo{1,2}\)且定义\(X_n=n^{\alpha}\indicator_{\intoo{1/(n+1),1/n}}\)并满足\(\lim_{n\rightarrow+\infty}X_n=0 \text{ a.s.}\)。说明可以在\autoref{thm:1.6.8}中令\(h(x)=x,g(x)=\envert{x}^{2/\alpha}\)，但\(X_n\)不被任何可积函数控制。
+\item 设概率测度\(\mu\)满足\(\forall A\in\mathcal{R}, \mu(A)=\int_Af(x)\dif x\)。利用\autoref{thm:1.6.9}的证明方法证明对任意满足\(g\geq0\)或\(\int \envert{g(x)}\mu(\dif x)<+\infty\)的函数\(g\)有
+\[\int g(x)\mu(\dif x)=\int g(x)f(x)\dif x\]
+\item \term{容斥原理} 令\(A_1,A_2,\dots,A_n\)为事件，\(A=\cup_{i=1}^nA_i\)。
+证明\(\indicator_A=1-\prod_{i=1}^n(1-\indicator_{A_{i}})\)，展开等号右侧并取期望得出
+\[\begin{split}
+	\probP\del{\bigcup_{i=1}^n A_i}=&\sum_{i=1}^n\probP(A_i)-\sum_{i<j}\probP(A_i\cap A_j)\\
+	+&\sum_{i<j<k}\probP(A_i\cap A_j\cap A_k)-\dots+(-1)^{n-1}\probP\del{\bigcap_{i=1}^nA_i}
+\end{split}\]
+\item \term{邦费罗尼不等式（Bonferroni inequalities）}
+令\(A_1,A_2,\dots,A_n\)为事件，\(A=\cup_{i=1}^nA_i\)。
+证明
+\begin{align*}
+	\indicator_A\leq&\sum_{i=1}^n\indicator_{A_i}\\
+	\indicator_A\geq&\sum_{i=1}^n\indicator_{A_i}-\sum_{i<j}\indicator_{A_i}\cdot1_{A_j}\\
+	\indicator_A\leq&\sum_{i=1}^n\indicator_{A_i}-\sum_{i<j}\indicator_{A_i}\cdot1_{A_j}+\sum_{i<j<k}\indicator_{A_i}\cdot1_{A_j}\cdot 1_{A_k}\\
+	\vdots&
+\end{align*}
+取期望得到
+\begin{align*}
+	\probP(A)\leq&\sum_{i=1}^n\probP(A_i)\\
+	\probP(A)\geq&\sum_{i=1}^n\probP(A_i)-\sum_{i<j}\probP(A_i\cap A_j)\\
+	\probP(A)\leq&\sum_{i=1}^n\probP(A_i)-\sum_{i<j<k}\probP(A_i\cap A_j)+\sum_{i<j}\probP(A_i\cap A_j\cap A_k)\\
+	\vdots&
+\end{align*}
+一般地，如果我们在容斥原理中保留偶（奇）数项，可以得到一个不等式下（上）界。
+\item 若\(\E \envert{X}^k<+\infty\)，那么对于\(0<j<k\)有\(\E \envert{X}^j<+\infty\)，进一步地，我们还有
+\[\E\envert{X}^j\leq(\E \envert{X}^k)^{j/k}\]
+\item 在\hyperref[thm:1.6.2]{琴生不等式}中令\(\varphi(x)=e^x\)以及\(\probP(X=\log y_m)=p(m)\)继而证明
+若\(\sum_{m=1}^np(m)=1\)且\(p(m),y_m>0\)则
+\[\sum_{m=1}^np(m)y_m\geq\prod_{m=1}^ny_m^{p(m)}\]
+当\(p(m)=1/n\)时，该不等式称为均值不等式。
+\item 若\(\E X_1^-<+\infty\)且\(\lim_{n\uparrow+\infty}X_n\stackrel{\uparrow}{=}X\)则\(\lim_{n\uparrow+\infty}\E X_n\stackrel{\uparrow}{=}\E X\)。
+\item 令\(X\geq0\)但\textbf{不假定}\(\E (1/X)<+\infty\)，证明
+\[\lim\limits_{y\rightarrow+\infty}y\E(1/X;X>y)=0\]
+\[\lim\limits_{y\downarrow 0}y\E(1/X;X>y)=0\]
+\item 若\(X_n\geq 0\)则\(\E\del{\sum_{n=1}^{+\infty}X_n}=\sum_{n=1}^{+\infty}\E X_n\)。
+\item 若\(X\)可积，\(\sequence{A_n}_{n=0}\)为互不相交的集合列且\(\bigcup_{n=1}^{+\infty}A_n=A\)，则有
+\[\sum_{n=0}^{+\infty}\E(X;A_n)=\E(X;A)\]
+即等号左侧的和式绝对收敛，且收敛到等号右侧的值。
+\end{exercise}
+
 \section{积测度、富比尼定理} \label{sec:1.7}
 \begin{theorem}
 \label{thm:1.7.2}

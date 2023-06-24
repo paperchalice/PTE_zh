@@ -1,6 +1,7 @@
 % !TeX encoding = UTF-8
 % !TeX spellcheck = zh-cmn-Hans-CN
 % !TeX program = xelatex
+% !TEX options = -shell-escape
 
 \documentclass[a4paper, oneside]{ctexbook}
 
@@ -20,7 +21,6 @@
 \begin{document}
 \maketitle
 \tableofcontents
-
 \subfile{chapter/ch1.tex}
 \subfile{chapter/ch2.tex}
 \subfile{chapter/ch3.tex}
@@ -32,6 +32,7 @@
 \subfile{chapter/ch9.tex}
 \subfile{chapter/appendix.tex}
 
+\listoftheorems[ignoreall,show={theorem,Theorem,euclid}]
 \glsaddall
 \printglossary[title=符号表,style=long]
 \printindex

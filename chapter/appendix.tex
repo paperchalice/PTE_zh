@@ -10,18 +10,19 @@
 \chapter{测度论的细节内容}
 正文中出现但未证明的与测度论相关的结果会在本附录中给出证明。
 \section{卡拉泰奥多里延拓定理} \label{sec:a.1}
-给定空间\(\Omega, \mathcal{F}, \mu\)，若\(N \in \mathcal{F}\)并有\(\mu(N) = 0\)，则称\(N\)为\term{\(\mu\)零测（度）集}，若\(\mu\)在上下文中可以确定，则有时会省略\(\mu\)。本节的主要任务是证明以下内容：
+给定空间\((\Omega, \mathcal{F}, \mu)\)，若\(N \in \mathcal{F}\)并有\(\mu(N) = 0\)，则称\(N\)为\term{\(\mu\)零测（度）集}，若\(\mu\)在上下文中可以确定，则有时会省略\(\mu\)。本节的主要目的是证明以下内容：
 \begin{theorem} \label{thm:a.1.1}
-	令\(\mathcal{S}\)为半代数，并令\(\mu\)为\(\mathcal{S}\)上的函数且有\(\mu(\emptyset) = 0\)。如果
+	令\(\mathcal{S}\)为半集代数，并令\(\mu\)为\(\mathcal{S}\)上满足\(\mu(\emptyset) = 0\)的函数。如果\(\mu\)满足：
 	\begin{enumerate*}
-		\item \label{thm:a.1.1.1} 将限个互不相交的\(S_i \in \mathcal{S}\)取并得到\(S \in \mathcal{S}\)，那么就有\(\mu(S) = \sum_{i}\mu(S_i)\)
-		\item \label{thm:a.1.1.2} 如果\(S_i, S \in \mathcal{S}\)符合\(S = +_{i \geq 1}S_i\)，那么\(\mu(S) \leq \sum_{i}\mu(S_i)\)
+		\item \label{thm:a.1.1.1}
+		如果\(S \in \mathcal{S}\)可以表示为有限个互不相交的\(S_i \in \mathcal{S}\)的并，那么\(\mu(S) = \sum_{i}\mu(S_i)\)
+		\item \label{thm:a.1.1.2} 如果\(S_i, S \in \mathcal{S}\)满足\(S = \bigplus_{i \geq 1}S_i\)，那么\(\mu(S) \leq \sum_{i}\mu(S_i)\)
 	\end{enumerate*}。
-	那么存在唯一的延拓\(\bar{\mu}\)，使得\(\bar{\mu}\)是由\(\mathcal{S}\)生成的代数\(\bar{\mathcal{S}}\)上的测度。如果延拓是\(\sigma\)-有限的，
+	则\(\mu\)存在唯一的延拓\(\bar{\mu}\)，使得\(\bar{\mu}\)是由\(\mathcal{S}\)生成的代数\(\bar{\mathcal{S}}\)上的测度。如果延拓是\(\sigma\)-有限的，
 	那么存在唯一的延拓\(\nu\)，使得\(\nu\)是\(\sigma(\mathcal{S})\)上的测度。
 \end{theorem}
 \begin{proof}
-	\lemref{lem:1.1.7}说明了\(\bar{\mathcal{S}}\)是由\(\mathcal{S}\)中的元素的不交并构成的集族。
+	\lemref{lem:1.1.7}说明了\(\bar{\mathcal{S}}\)中的元素是\(\mathcal{S}\)中元素的有限不交并。
 	接下来在\(\bar{\mathcal{S}}\)上定义\(\bar{\mu}\)。
 	若\(A = +_i S_i\)，定义\(\bar{\mu}(A) = \sum_i\mu(S_i)\)。
 	为了验证\(\bar{\mu}\)是良定义的，我们假定\(A = +_jT_j\)，注意到\(S_i = +_j(S_i \cap T_j)\)以及\(T_j = +_i(S_i\cap T_j)\)故\ref{thm:a.1.1.1}蕴含
@@ -384,7 +385,7 @@
 	故该定理成立。
 \end{proof}
 \section{拉东-尼科迪姆定理} \label{sec:a.4}
-本节我们将证明拉东-尼科迪姆定理。为了证明该定理，我们需要从一个看起来不是那么与之相关的内容开始。令\((\Omega, \mathcal{F})\)为一可测空间，称\(\alpha\)为\((\Omega, \mathcal{F})\)上的\term{带号测度}（signed measure），如果其满足
+本节我们将证明拉东-尼科迪姆定理。为了证明该定理，我们将从一个看起来无关的内容入手。令\((\Omega, \mathcal{F})\)为一可测空间，如果定义在\(\Omega\)上的实值函数\(\alpha\)满足：
 \begin{enumerate}
 	\item \(\alpha\)的值域为\(\intoc{-\infty, +\infty}\)。
 	\item \(\alpha(\emptyset) = 0\)
@@ -394,31 +395,33 @@
 		\item \(\alpha(E)=+\infty\)，则\(\sum_i\alpha(E_i)^-<+\infty\)且\(\sum_i\alpha(E_i)^+=+\infty\)。
 	\end{itemize}
 \end{enumerate}
+则称\(\alpha\)为\((\Omega, \mathcal{F})\)上的\term{带号测度}（signed measure）
+
 显然，带号测度不能同时将\(+\infty\)和\(-\infty\)纳入值域，因为如果这样的话\(\alpha(A)+\alpha(B)\)可能会没有意义。
-大多数情况下带号测度的值域为\(\intoc{-\infty, +\infty}\)和\(\intco{-\infty, +\infty}\)中的一个。在本书中我们采用前者作为值域。和往常一样，我们来看一些例子以便理解带号测度的定义。
+大多数情况下带号测度的值域为\(\intoc{-\infty, +\infty}\)或\(\intco{-\infty, +\infty}\)。在本书中我们采用前者作为值域。和往常一样，我们来看一些例子以便理解带号测度的定义。
 \begin{example} \label{ex:a.4.1}
-	令\(\mu\)为一测度，若函数\(f\)满足\(\int_\Omega f^-\,\dif \mu < +\infty\)则令\(\alpha(A) = \int_A f\,\dif\mu\)。某一节的练习说明了\(\alpha\)是一个带号测度。% FIXME: 原文也没说清楚是哪个练习。。。
+	令\(\mu\)为一测度，若函数\(f\)满足\(\int_\Omega f^-\,\dif \mu < +\infty\)，根据\ref{exe:1.5.4}，\(\alpha(A) = \int_A f\,\dif\mu\)是一个带号测度。% FIXME: 原文也没说清楚是哪个练习。。。
 \end{example}
 \begin{example} \label{ex:a.4.2}
 	令\(\mu_1\)、\(\mu_2\)为测度且有\(\mu_2(\Omega)<+\infty\)，则\(\alpha(A)=\mu_1(A) - \mu_2(A)\)是一带号测度。
 \end{example}
 
-若尔当分解，即\thmref{thm:a.4.6}，会说明\exref{ex:a.4.2}是带号测度的一种一般表示。
+若尔当分解定理，即\thmref{thm:a.4.6}，会说明\exref{ex:a.4.2}是带号测度的一种表示形式。
 为了证明这个结论，我们先从两个定义开始。称集合\(A\)是\term{正}的（positive）（正集合），若对\(A\)的每一个可测子集\(B\)均有\(\alpha(B)\geq 0\)；反之，称集合\(A\)是\term{负}的（negative）（负集合），若对\(A\)的每一个可测子集\(B\)均有\(\alpha(B)\leq 0\)。
 \begin{exercise}
-	\item 证明在\exref{ex:a.4.1}中，\(A\)是正的当且仅当\(\mu(A\cap \{x:f(x)< 0\}) = 0\)。
+	\item 证明在\exref{ex:a.4.1}中，\(A\)是正集合当且仅当\(\mu(A\cap \{x:f(x)< 0\}) = 0\)。
 \end{exercise}
 \begin{lemma} \label{lem:a.4.3}
 	\begin{enumerate}
 		\item \label{lem:a.4.3.1} 正集合的任意可测子集均是正集合。
-		\item \label{lem:a.4.3.2} 若集合列\((A_n)\)中的集合均为正集合，则\(A=\bigcup_n A_n\)为正集合。
+		\item \label{lem:a.4.3.2} 若集合列\(\sequence{A_n}_{n=1}\)中的集合均为正集合，则\(A=\bigcup_n A_n\)为正集合。
 	\end{enumerate}
 \end{lemma}
 \begin{proof}
 	\ref{lem:a.4.3.1}是显然的。对于\ref{lem:a.4.3.2}，只需注意到
 	\[B_n = A_n\cap\del{\bigcap_{m=1}^{n-1}A_m^c} \subseteq A_n\]
-	因而集合列\((B_n)\)中的每一项均是正的且是不交的，而且还有\(\bigcup_n B_n = \bigcup_n A_n\)。
-	令\(E\)为\(A\)的可测子集构造集列\((E_n = E\cap B_n)\)。故我们有\(\alpha(E_n)\geq 0\)由于\((B_n)\)由正集合构成故而\(\alpha(E) = \sum_n \alpha(E_n) \geq 0\)。
+	因而集合列\(\sequence{B_n}_{n=1}\)中的每一项均是正的且是不交的，且有\(\bigcup_n B_n = \bigcup_n A_n\)。
+	令\(E\)为\(A\)的可测子集，构造集列使得其通项为\(E_n = E\cap B_n\)。故有\(\alpha(E_n)\geq 0\)由于\(\sequence{B_n}_{n=1}\)是正集列故而\(\alpha(E) = \sum_n \alpha(E_n) \geq 0\)。
 \end{proof}
 
 将\lemref{lem:a.4.3}中的``正''换成``负''结论依然成立。
@@ -427,8 +430,8 @@
 	令\(E\)为一带号测度为负数的集合，则存在负集合\(F\)使得\(F\subseteq E\)且\(\alpha(F)<0\)。
 \end{lemma}
 \begin{proof}
-	如果\(E\)本身就是负集合，则结论成立。若\(E\)非负，考虑符合下列条件的最小正整数\(n_1\)：存在\(E_1\subseteq E\)使得\(\alpha(E_1) \geq 1/n_1\)，
-	若\(k\geq 2\)，若\(F_k = E-\bigcup_{i=1}^{k-1}E_i\)为负集合，证明结束。如若不然，考虑符合下列条件的最小正整数\(n_k\)：存在\(E_k\subseteq F_k\)使得\(\alpha(E_k) \geq 1/n_k\)。
+	如果\(E\)本身就是负集合，则结论成立。若\(E\)不是负集合，考虑下面的构造：根据负集合的定义，存在\(E_1\subseteq E\)和自然数\(n_1\)使得\(\alpha(E_1) \geq 1/n_1\)，
+	对于\(k\geq 2\)，若\(F_k = E-\bigcup_{i=1}^{k-1}E_i\)为负集合，证明结束。如若不然，则存在\(E_k\subseteq F_k\)使得\(\alpha(E_k) > 0\)，令\(n_k\)为满足\(\alpha(E_k) \geq 1/n_k\)的最小自然数。
 	如果上述构造过程无法在有限的\(k\)处停止，则考虑
 	\[F=\bigcap_k F_k = E-\del{\bigcup_k E_k}\]
 	由于\(0>\alpha(E)>-\infty\)且\(\alpha(E_k)\geq 0\)，根据带号测度的定义我们有
@@ -442,7 +445,7 @@
 	若\(\alpha\)为一带号测度。存在正集合\(A\)与负集合\(B\)使得\(A\cup B=\Omega\)且\(A\cap B = \emptyset\)。
 \end{theorem}
 \begin{proof}
-	令\(c=\inf\{\alpha(B): B\text{是负集合}\}\leq 0\)。令\((B_i)\)为一集列且有\(\alpha(B_i) \downarrow 0\)。令\(B = \bigcup_i B_i\)。根据\lemref{lem:a.4.3}，\(B\)是负集合，故根据定义\(\alpha(B) \geq c\)。
+	令\(c=\inf\{\alpha(B): B\text{是负集合}\}\leq 0\)。令\((B_i)\)为一负集列且有\(\alpha(B_i) \downarrow c\)。令\(B = \bigcup_i B_i\)。根据\lemref{lem:a.4.3}，\(B\)是负集合，故根据定义\(\alpha(B) \geq c\)。
 	接下来我们说明\(\alpha(B)\leq c\)。注意到\(\alpha(B) = \alpha(B_i)+\alpha(B-B_i) \leq \alpha(B_i)\)，接下来只要令\(i\rightarrow +\infty\)即可。
 	根据上面这两条不等式，我们有\(\alpha(B)=c\)，而且根据带号测度的定义我们还有\(c>-\infty\)。令\(A=B^c\)。我们接下来证明\(A\)是正集合。
 	如果\(A\)有子集\(E\)使得\(\alpha(E)<0\)，那么根据\lemref{lem:a.4.4}，\(E\)会包含一个具有负带号测度的子集\(F\)，但这样的话\(B\cup F\)作为一个负集合却有性质\(\alpha(B\cup F) = \alpha(B)+\alpha(F) < c\)从而与\(c\)的定义矛盾。
@@ -453,7 +456,7 @@
 的集合。其中\(B\subseteq C\) a.e. 表示\(\mu(B\cap C^c)=0\)。上面这个例子属于一个比较典型的例子。
 假如\(\Omega = A_1\cup B_1=A_2\cup B_2\)为两个哈恩分解，那么我们会发现\(A_2\cap B_1\)既是正集合又是负集合，故它是\term{零集合}（null set）：其所有子集的测度为\(0\)。同样地，\(A_1\cap B_2\)也是零集合。
 
-给定两个测度\(\mu_1\)和\(\mu_2\)，如果存在集合\(A\)使得\(\mu_1(A)=\mu_2(A^c)=0\)则称这两个测度\term{互为奇异测度}（mutually singular）。此时我们也成\(\mu_1\)较\(\mu_2\)是\term{奇异}的（singular with respect to (w.r.t.)）并记为\(\mu_1\perp\mu_2\)。
+给定两个测度\(\mu_1\)和\(\mu_2\)，如果存在集合\(A\)使得\(\mu_1(A)=\mu_2(A^c)=0\)则称这两个测度\term{互为奇异测度}（mutually singular）。此时我们也称\(\mu_1\)较\(\mu_2\)是\term{奇异}的（singular with respect to (w.r.t.)）并记为\(\mu_1\perp\mu_2\)。
 \begin{exercise}[start=2]
 	\item 证明康托尔集上的均匀分布（\exref{ex:1.2.7}）定义的测度较勒贝格测度是奇异的。
 \end{exercise}
@@ -465,7 +468,7 @@
 \end{theorem}
 \begin{proof}
 	令\(\Omega = A\cup B\)为一哈恩分解。并令
-	\[\alpha_+(E) = \alpha(E\cap A)\ \text{ 以及 }\ \alpha_-(E) = \alpha(E\cap B)\]
+	\[\alpha_+(E) = \alpha(E\cap A)\ \text{ 以及 }\ \alpha_-(E) = -\alpha(E\cap B)\]
 	由于\(A\)是正的\(B\)是负的，故\(\alpha_+\)和\(\alpha_-\)均为测度。
 	我们还有\(\alpha_+(A^c)=\alpha_-(A)=0\)故二者互为奇异测度。
 	接下来证明唯一性，假如\(\alpha=\nu_1-\nu_2\)以及有集合\(D\)满足\(\nu_1(D)=\nu_2(D^c)=0\)。
@@ -543,7 +546,7 @@
 	\item 若\(\pi\ll\nu\ll\mu\)，则\(\od{\pi}{\mu}=\od{\pi}{\mu}\cdot\od{\nu}{\mu}\)。
 	\item 若\(\nu\ll\mu\)且\(\mu\ll\nu\)，则\(\od{\mu}{\nu}=\del{\od{\nu}{\mu}}^{-1}\)。
 \end{exercise}
-\section{积分内的微分} \label{sec:a.5}
+\section{积分号下的微分} \label{sec:a.5}
 在正文的某些地方我们需要交换微分与积分或求和的顺序。本节内容专门探讨了与之有关的结论。
 \begin{theorem} \label{thm:a.5.1}
 	令\((S, \mathcal{S}, \mu)\)为可测空间。并有函数\(f: S\times\mathcal{S}\mapsto \C\)。令\(\delta > 0\)，如果对任意\(x \in \intoo{y-\delta, y+\delta}\)有
@@ -621,7 +624,7 @@
 	\end{enumerate}
 	则\(u^\prime(x)=v(x)\)。
 \end{theorem}
-\begin{example}
+\begin{example}\label{exp:a.5.6}
 	在\secref{sec:2.6}，我们想说明对于\(p\in\intoo{0,1}\)有
 	\[\del{\sum_{i=1}^{+\infty}(1-p)^n}^\prime = -\sum_{i=1}^{+\infty}n(1-p)^{n-1}\]
 \end{example}
